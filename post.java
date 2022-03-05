@@ -7,7 +7,7 @@ public class Post{
     public Post(String cityName, double rentalPrice, int numbedrooms, boolean rentedFlag){
         this.cityName = cityName;
         this.rentalPrice = rentalPrice;
-        this.numbedrooms = bednumbedroomsrooms;
+        this.numbedrooms = numbedrooms;
         this.rentedFlag = rentedFlag;
     }
     
