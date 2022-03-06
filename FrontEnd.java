@@ -7,11 +7,47 @@ import java.util.HashMap;
 import java.util.Map;
 public class FrontEnd {
     public static Map<String, User> accountMap = new HashMap<>();
-    public static void login(){
+    public static void login() throws IOException{
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String username;
+        String password;
+
+        System.out.println("Please enter your username");
+        username = reader.readLine();
+
+        System.out.println("Please enter your password");
+        password = reader.readLine();
         
+        if (accountMap.containsKey(username)){
+            if(accountMap.containsValue(password)){
+                System.out.println("Welcome to OT-BnB " +username);
+            }
+            else{
+                System.out.println("Invalid password");
+            }
+        }
+        else{
+            System.out.println("User does not exist");
+        }
     }
-    public static void logout(){
-        
+    public static void logout() throws IOException{
+        Integer code = 0;
+        Integer bedrooms = 0;
+        Integer nights = 0;
+        String username = "";
+        String type ="";
+        String rentalUnit="";
+        String city= "";
+        Double price = 0.0;
+    
+        System.out.println("You have successfully logged out.");
+        try {
+            BufferedWriter fw = new BufferedWriter(new FileWriter("dailyTransaction.txt", true));
+            fw.write(code+" "+username+" "+type+" "+rentalUnit+" "+city+" "+bedrooms+" "+price+" "+nights);
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
     }
 
     public static void create() throws IOException{
@@ -69,6 +105,7 @@ public class FrontEnd {
             new InputStreamReader(System.in));
         String choice;
         do{
+            System.out.println("Welcome to OT-BnB");
             System.out.println("Please enter option");
             choice = reader.readLine();
             if (choice.equals("create")){
@@ -76,6 +113,15 @@ public class FrontEnd {
             }
             else if (choice.equals("delete")){
                 delete();
+            }
+            else if (choice.equals("login")){
+                login();
+            }
+            else if (choice.equals("logout")){
+                logout();
+            }
+            else{
+                System.out.println("Invalid choice");
             }
         }while(!choice.equals("exit"));
 
