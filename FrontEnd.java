@@ -89,17 +89,24 @@ public class FrontEnd {
     }
 
     public static void post(){
-        
+           
     }
     public static void rent(){
         
     }
     public static void search(){
-        
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String cityName;
+        System.out.println("Please enter a city to search");
+        cityName = reader.readLine();
+        System.out.println("Searching for" + cityName);
+        //passes the city name to search
+        if (Search(cityName) == 0 || Search(cityName) == null){
+            System.out.println("Nothing found for " + cityName);
+        }else{
+            System.out.println("Nothing found for " + Search(cityName));
+        }
     }
-    
-    
-
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(
             new InputStreamReader(System.in));
@@ -131,4 +138,3 @@ public class FrontEnd {
 
   
 }
-
