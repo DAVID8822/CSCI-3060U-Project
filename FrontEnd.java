@@ -8,9 +8,12 @@ import java.util.Map;
 import java.util.ArrayList;
 
 public class FrontEnd {
+    //Map to store user's account
     public static Map<String, User> accountMap = new HashMap<>();
     public static ArrayList<Post> rentalList = new ArrayList<>();
     public static User currentUser = null;
+
+    //Login method to process user into the system
     public static void login() throws IOException{
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String username;
@@ -22,6 +25,7 @@ public class FrontEnd {
         System.out.println("Please enter your password");
         password = reader.readLine();
         
+        //Validates user's account
         if (accountMap.containsKey(username)){
             System.out.println("Inputted password is " + password);
             System.out.println("Actual password is " + accountMap.get(username).getPassword());
@@ -37,7 +41,10 @@ public class FrontEnd {
             System.out.println("User does not exist");
         }
     }
+
+    //Logout method to process users our of the system
     public static void logout() throws IOException{
+        //Placeholder variables
         Integer code = 0;
         Integer bedrooms = 0;
         Integer nights = 0;
@@ -46,19 +53,29 @@ public class FrontEnd {
         String rentalUnit="";
         String city= "";
         Double price = 0.0;
-    
-        System.out.println("You have successfully logged out.");
-       
+        Boolean loggedIn = true;
+        
+        //Checks to see if there is a user logged into the system currently
+        if(loggedIn == true)
+        {
+            System.out.println("You have successfully logged out.");
+            
+            //Print's daily transaction file after logging out.
             try (BufferedWriter fw = new BufferedWriter(new FileWriter("dailyTransaction.txt", true))) {
                 fw.write(code+" "+username+" "+type+" "+rentalUnit+" "+city+" "+bedrooms+" "+price+" "+nights);
                 currentUser = null;
             }
-        
-        catch(IOException e){
-            e.printStackTrace();
+            catch(IOException e){
+                e.printStackTrace();
+            }
         }
+        else{
+            System.out.println("No user is currently logged in.");
+        }
+        
     }
 
+    //Create method to create a new user onto the system
     public static void create() throws IOException{
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         
@@ -72,8 +89,11 @@ public class FrontEnd {
         System.out.println("Please enter a user type");
         userType = reader.readLine();
 
+        //Stores newly created user into map
         accountMap.put(name, new User(name, password, userType));
+        //Creates a text daily transaction file with the new user's information.
         try {
+
             BufferedWriter fw = new BufferedWriter(new FileWriter("dailyTransactions.txt", true));
             fw.write("A New " + userType + " user by the name of " + name + " was created. The password is " + password);
             fw.newLine();
@@ -84,6 +104,7 @@ public class FrontEnd {
      
     }
 
+    //Delete method to delete a user's account from the system.
     public static void delete() throws IOException{
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String usertoDelete;
@@ -97,6 +118,7 @@ public class FrontEnd {
 
     }
 
+    //Post method to allow user create listiing
     public static void post() throws NumberFormatException, IOException{
             String cityName;
             int id;
@@ -105,7 +127,7 @@ public class FrontEnd {
             id = Integer.parseInt(reader.readLine());
             System.out.println("Please enter the name of the city; ");
             cityName = reader.readLine();
-            
+
             double rentalPrice;
             System.out.println("Please enter the price of the unit: ");
             rentalPrice = Double.parseDouble(reader.readLine());
@@ -115,12 +137,15 @@ public class FrontEnd {
             numbedrooms = Integer.parseInt(reader.readLine());
             rentalList.add(new Post(cityName, rentalPrice, numbedrooms,false, id));
 
+            //Generates daily transaction file with posted listing
             BufferedWriter fw = new BufferedWriter(new FileWriter("dailyTransactions.txt", true));
             fw.write("A New posting in " + cityName + " with a rent of " + rentalPrice + " was created. The number of bedrooms is " + numbedrooms);
             fw.newLine();
             fw.close();
              
     }
+
+    //Rent method to all users to rent listings
     public static void rent() throws NumberFormatException, IOException{
         int id;
         int nights;
@@ -135,6 +160,7 @@ public class FrontEnd {
         System.out.println("Please enter the name of the city; ");
         nights = Integer.parseInt(reader.readLine());
         
+        //Gets a rental listing with id
         for (Post x: rentalList){
             if (x.getID() == id){
                 rentedPosting = x;
@@ -143,6 +169,8 @@ public class FrontEnd {
 
         totalcost = rentedPosting.getrentalPrice() * nights;
         System.out.println("The rent per night is " + rentedPosting.getrentalPrice() + " and the total cost is " + totalcost  + " Rent? YES/NO");
+
+        //Ask for confirmation of rental
         choice = reader.readLine();
         if (choice.equals("YES")){
             System.out.println("Rental successful");
@@ -151,6 +179,7 @@ public class FrontEnd {
         else if (choice.equals("NO")){
             System.out.println("Rental cancelled");
         }
+
         //Writing to transaction file
         BufferedWriter fw = new BufferedWriter(new FileWriter("dailyTransactions.txt", true));
         fw.write("Rental id" + id + " was rented for " + nights + " nights with a total cost of " + totalcost + ".");
@@ -159,11 +188,15 @@ public class FrontEnd {
 
         
     }
+
+    //Search method for users to search for listing
     public static void search() throws NumberFormatException, IOException{
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String cityName;
         double maxRentalPrice;
         int minBedrooms;
+
+        //An array that stores a filtered list of search
         ArrayList<Post> returnedSearch = new ArrayList<>();
         System.out.println("Please enter a city to search");
         cityName = reader.readLine();
@@ -171,6 +204,8 @@ public class FrontEnd {
         maxRentalPrice = Double.parseDouble(reader.readLine());
         System.out.println("Please enter the minimum bedrooms");
         minBedrooms = Integer.parseInt(reader.readLine());
+
+        //Filters listing to add to the array
         for (Post currPost: rentalList){
             if (currPost.getCityName().equals(cityName) && currPost.getrentalPrice() <= maxRentalPrice && currPost.getNumBedrooms()>=minBedrooms){
                 returnedSearch.add(currPost);
@@ -184,6 +219,7 @@ public class FrontEnd {
             System.out.println("ID:" + x.getID());
         }
 
+        //Generates daily transaction regarding a search
         BufferedWriter fw = new BufferedWriter(new FileWriter("dailyTransactions.txt", true));
         fw.write("A search was for postings in " + cityName + " with a max rent of " + maxRentalPrice + "  And a min number of bedrooms is " + minBedrooms + "was conducted.");
         fw.newLine();
@@ -194,6 +230,8 @@ public class FrontEnd {
         BufferedReader reader = new BufferedReader(
             new InputStreamReader(System.in));
         String choice;
+
+        //Menu options
         do{
             System.out.println("Welcome to OT-BnB");
             System.out.println("Please enter option");
