@@ -131,14 +131,20 @@ public class FrontEnd {
         ArrayList<Post> returnedSearch = new ArrayList<>();
         System.out.println("Please enter a city to search");
         cityName = reader.readLine();
-        System.out.println("Please enter a city to search");
+        System.out.println("Please enter a max rental price");
         maxRentalPrice = Double.parseDouble(reader.readLine());
-        System.out.println("Please enter a city to search");
+        System.out.println("Please enter the minimum bedrooms");
         minBedrooms = Integer.parseInt(reader.readLine());
         for (Post currPost: rentalList){
             if (currPost.getCityName().equals(cityName) && currPost.getrentalPrice() <= maxRentalPrice && currPost.getNumBedrooms()>=minBedrooms){
                 returnedSearch.add(currPost);
             }
+        }
+        System.out.println("Found postings");
+        for (Post x: returnedSearch){
+            System.out.println("City name" + x.getCityName());
+            System.out.println("Rental price" + x.getrentalPrice());
+            System.out.println("Number of bedrooms" + x.getNumBedrooms());
         }
         //passes the city name to search
         /*if (Search(cityName) == 0 || Search(cityName) == null){
