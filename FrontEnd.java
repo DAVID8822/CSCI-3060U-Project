@@ -41,10 +41,11 @@ public class FrontEnd {
         Double price = 0.0;
     
         System.out.println("You have successfully logged out.");
-        try {
-            BufferedWriter fw = new BufferedWriter(new FileWriter("dailyTransaction.txt", true));
-            fw.write(code+" "+username+" "+type+" "+rentalUnit+" "+city+" "+bedrooms+" "+price+" "+nights);
-        }
+       
+            try (BufferedWriter fw = new BufferedWriter(new FileWriter("dailyTransaction.txt", true))) {
+                fw.write(code+" "+username+" "+type+" "+rentalUnit+" "+city+" "+bedrooms+" "+price+" "+nights);
+            }
+        
         catch(IOException e){
             e.printStackTrace();
         }
@@ -95,14 +96,12 @@ public class FrontEnd {
             cityName = reader.readLine();
             
             double rentalPrice;
-            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             System.out.println("Please enter the price of the unit: ");
-            rentalPrice = reader.readLine();
+            rentalPrice = Double.parseDouble(reader.readLine());
 
             int numbedrooms;
-            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             System.out.println("Please enter the bedroom count: ");
-            numbedrooms = reader.readLine();
+            numbedrooms = Integer.parseInt(reader.readLine());
             Post(cityName, rentalPrice, numbedrooms, 1);
     }
     public static void rent(){
