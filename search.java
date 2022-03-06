@@ -10,14 +10,14 @@ public class Search{
         this.cityName = cityName;
     }
     
-    public String getCityName(String cityName, ArrayList citesAr,  ArrayList resultAr){
+    public String getCityName(){
         return cityName;
     }
-    public String searchList(String cityName, ArrayList citesAr,  ArrayList resultAr){
+    public ArrayList searchList(String cityName, ArrayList citesAr,  ArrayList resultAr){
         // loop through the potentialCity names 
         for(String x: citiesAr)
         // If you find a match with the name
-            if(x.matches(getCityName()))
+            if(x.matches(getCityName())
             // add all of the matching units to the arraylist
                 resultAr.add(x);
                 // return the matches arr

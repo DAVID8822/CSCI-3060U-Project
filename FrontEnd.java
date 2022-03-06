@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.Map;
 public class FrontEnd {
     public static Map<String, User> accountMap = new HashMap<>();
+    public static Map<String, Post> rentalMap = new HashMap<>();
+    public static User currentUser = null;
     public static void login() throws IOException{
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String username;
@@ -19,8 +21,9 @@ public class FrontEnd {
         password = reader.readLine();
         
         if (accountMap.containsKey(username)){
-            if(accountMap.containsValue(password)){
+            if(accountMap.get(username).getPassword() == password){
                 System.out.println("Welcome to OT-BnB " +username);
+                currentUser = accountMap.get(username);
             }
             else{
                 System.out.println("Invalid password");
@@ -44,6 +47,7 @@ public class FrontEnd {
        
             try (BufferedWriter fw = new BufferedWriter(new FileWriter("dailyTransaction.txt", true))) {
                 fw.write(code+" "+username+" "+type+" "+rentalUnit+" "+city+" "+bedrooms+" "+price+" "+nights);
+                currentUser = null;
             }
         
         catch(IOException e){
@@ -72,8 +76,7 @@ public class FrontEnd {
           } catch (IOException e) {
             e.printStackTrace();
           }
-        System.out.println(accountMap);
-          
+     
     }
 
     public static void delete() throws IOException{
@@ -86,10 +89,10 @@ public class FrontEnd {
         fw.write("User " + usertoDelete +  " was deleted");
         fw.newLine();
         fw.close();
-        System.out.println(accountMap);
+
     }
 
-    public static void post(){
+    public static void post() throws NumberFormatException, IOException{
             String cityName;
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             System.out.println("Please enter the name of the city; ");
@@ -102,7 +105,16 @@ public class FrontEnd {
             int numbedrooms;
             System.out.println("Please enter the bedroom count: ");
             numbedrooms = Integer.parseInt(reader.readLine());
-            Post(cityName, rentalPrice, numbedrooms, 1);
+            rentalMap.put(cityName, new Post(cityName, rentalPrice, numbedrooms,false));
+
+            try {
+                BufferedWriter fw = new BufferedWriter(new FileWriter("dailyTransactions.txt", true));
+                fw.write("A New posting in " + cityName + " with a rent of " + rentalPrice + " was created. The number of bedrooms is " + numbedrooms);
+                fw.newLine();
+                fw.close();
+              } catch (IOException e) {
+                e.printStackTrace();
+              }
     }
     public static void rent(){
         
@@ -110,9 +122,15 @@ public class FrontEnd {
     public static void search(){
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String cityName;
+        double maxRentalPrice;
+        int minBedrooms;
         System.out.println("Please enter a city to search");
         cityName = reader.readLine();
-        System.out.println("Searching for" + cityName);
+        System.out.println("Please enter a city to search");
+        maxRentalPrice = Double.parseDouble(reader.readLine());
+        System.out.println("Please enter a city to search");
+        minBedrooms = Integer.parseInt(reader.readLine());
+
         //passes the city name to search
         if (Search(cityName) == 0 || Search(cityName) == null){
             System.out.println("Nothing found for " + cityName);

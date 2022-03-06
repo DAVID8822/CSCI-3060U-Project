@@ -23,4 +23,4 @@ public class Post{
     public int getrentedFlag(){
         return numbedrooms;
     }
-    }
+}
