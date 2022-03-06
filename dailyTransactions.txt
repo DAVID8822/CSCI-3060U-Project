@@ -1,0 +1,7 @@
+A New admin user by the name of user321 was created. The password is hello321
+A New a user by the name of hello82 was created. The password is hello82
+A New h user by the name of hello was created. The password is hello
+A New a user by the name of david was created. The password is david
+A New a user by the name of david was created. The password is david
+A New a user by the name of david was created. The password is password
+A New admin user by the name of newuser was created. The password is password

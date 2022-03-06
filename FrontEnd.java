@@ -5,9 +5,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ArrayList;
 public class FrontEnd {
     public static Map<String, User> accountMap = new HashMap<>();
-    public static Map<String, Post> rentalMap = new HashMap<>();
+    public static ArrayList<Post> rentalList = new ArrayList<>();
+    
     public static User currentUser = null;
     public static void login() throws IOException{
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -21,8 +23,10 @@ public class FrontEnd {
         password = reader.readLine();
         
         if (accountMap.containsKey(username)){
-            if(accountMap.get(username).getPassword() == password){
-                System.out.println("Welcome to OT-BnB " +username);
+            System.out.println("Inputted password is " + password);
+            System.out.println("Actual password is " + accountMap.get(username).getPassword());
+            if(accountMap.get(username).getPassword().equals(password)){
+                System.out.println("LOGIN SUCCESS! Welcome to OT-BnB " + username);
                 currentUser = accountMap.get(username);
             }
             else{
@@ -105,7 +109,7 @@ public class FrontEnd {
             int numbedrooms;
             System.out.println("Please enter the bedroom count: ");
             numbedrooms = Integer.parseInt(reader.readLine());
-            rentalMap.put(cityName, new Post(cityName, rentalPrice, numbedrooms,false));
+            rentalList.add(new Post(cityName, rentalPrice, numbedrooms,false));
 
             try {
                 BufferedWriter fw = new BufferedWriter(new FileWriter("dailyTransactions.txt", true));
@@ -119,24 +123,30 @@ public class FrontEnd {
     public static void rent(){
         
     }
-    public static void search(){
+    public static void search() throws NumberFormatException, IOException{
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String cityName;
         double maxRentalPrice;
         int minBedrooms;
+        ArrayList<Post> returnedSearch = new ArrayList<>();
         System.out.println("Please enter a city to search");
         cityName = reader.readLine();
         System.out.println("Please enter a city to search");
         maxRentalPrice = Double.parseDouble(reader.readLine());
         System.out.println("Please enter a city to search");
         minBedrooms = Integer.parseInt(reader.readLine());
-
+        for (Post currPost: rentalList){
+            if (currPost.getCityName().equals(cityName) && currPost.getrentalPrice() <= maxRentalPrice && currPost.getNumBedrooms()>=minBedrooms){
+                returnedSearch.add(currPost);
+            }
+        }
         //passes the city name to search
-        if (Search(cityName) == 0 || Search(cityName) == null){
+        /*if (Search(cityName) == 0 || Search(cityName) == null){
             System.out.println("Nothing found for " + cityName);
         }else{
             System.out.println("Nothing found for " + Search(cityName));
         }
+        */
     }
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(
@@ -158,9 +168,22 @@ public class FrontEnd {
             else if (choice.equals("logout")){
                 logout();
             }
+            else if (choice.equals ("post")){
+                post();
+            }
+            else if (choice.equals ("search")){
+                search();
+            }
+            else if(choice.equals("test")){
+                System.out.println("Accountmap" + accountMap);
+                System.out.println("RentalList" + rentalList);
+                System.out.println("CurrentUser" + currentUser);
+            }
+
             else{
                 System.out.println("Invalid choice");
             }
+          
         }while(!choice.equals("exit"));
 
     }

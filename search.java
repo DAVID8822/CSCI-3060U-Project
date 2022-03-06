@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+/*import java.util.ArrayList;
 public class Search{
     public String cityName;
     public ArrayList<String> citiesAr = new ArrayList<String>();
@@ -17,10 +17,11 @@ public class Search{
         // loop through the potentialCity names 
         for(String x: citiesAr)
         // If you find a match with the name
-            if(x.matches(getCityName())
+            if(x.matches(getCityName()){
             // add all of the matching units to the arraylist
                 resultAr.add(x);
+            }
                 // return the matches arr
         return resultAr;
     }
-}
+}*/
