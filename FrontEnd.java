@@ -89,6 +89,9 @@ public class FrontEnd {
     }
 
     public static void post(){
+           String cityName;
+           double rentalPrice;
+           int numbedrooms;
            
     }
     public static void rent(){
@@ -135,6 +138,3 @@ public class FrontEnd {
     }
 
   
-
-  
-}
