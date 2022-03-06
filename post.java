@@ -3,12 +3,13 @@ public class Post{
     public double rentalPrice;
     public int numbedrooms;
     public boolean rentedFlag = false;
-        
-    public Post(String cityName, double rentalPrice, int numbedrooms, boolean rentedFlag){
+    public int id;
+    public Post(String cityName, double rentalPrice, int numbedrooms, boolean rentedFlag, int id){
         this.cityName = cityName;
         this.rentalPrice = rentalPrice;
         this.numbedrooms = numbedrooms;
         this.rentedFlag = rentedFlag;
+        this.id = id;
     }
     
     public String getCityName(){
@@ -22,5 +23,12 @@ public class Post{
     }
     public int getrentedFlag(){
         return numbedrooms;
+    }
+    public int getID(){
+        return id;
+    }
+
+    public void setRented(boolean flag){
+        this.rentedFlag = flag;
     }
 }

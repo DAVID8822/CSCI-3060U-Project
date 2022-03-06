@@ -6,10 +6,10 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
+
 public class FrontEnd {
     public static Map<String, User> accountMap = new HashMap<>();
     public static ArrayList<Post> rentalList = new ArrayList<>();
-    
     public static User currentUser = null;
     public static void login() throws IOException{
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -71,6 +71,7 @@ public class FrontEnd {
         password = reader.readLine();
         System.out.println("Please enter a user type");
         userType = reader.readLine();
+
         accountMap.put(name, new User(name, password, userType));
         try {
             BufferedWriter fw = new BufferedWriter(new FileWriter("dailyTransactions.txt", true));
@@ -98,7 +99,10 @@ public class FrontEnd {
 
     public static void post() throws NumberFormatException, IOException{
             String cityName;
+            int id;
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            System.out.println("Please enter an id (Numbers only");
+            id = Integer.parseInt(reader.readLine());
             System.out.println("Please enter the name of the city; ");
             cityName = reader.readLine();
             
@@ -109,18 +113,50 @@ public class FrontEnd {
             int numbedrooms;
             System.out.println("Please enter the bedroom count: ");
             numbedrooms = Integer.parseInt(reader.readLine());
-            rentalList.add(new Post(cityName, rentalPrice, numbedrooms,false));
+            rentalList.add(new Post(cityName, rentalPrice, numbedrooms,false, id));
 
-            try {
-                BufferedWriter fw = new BufferedWriter(new FileWriter("dailyTransactions.txt", true));
-                fw.write("A New posting in " + cityName + " with a rent of " + rentalPrice + " was created. The number of bedrooms is " + numbedrooms);
-                fw.newLine();
-                fw.close();
-              } catch (IOException e) {
-                e.printStackTrace();
-              }
+            BufferedWriter fw = new BufferedWriter(new FileWriter("dailyTransactions.txt", true));
+            fw.write("A New posting in " + cityName + " with a rent of " + rentalPrice + " was created. The number of bedrooms is " + numbedrooms);
+            fw.newLine();
+            fw.close();
+             
     }
-    public static void rent(){
+    public static void rent() throws NumberFormatException, IOException{
+        int id;
+        int nights;
+        Post rentedPosting = null;
+        double totalcost;
+        String choice;
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.println("Please enter an id (Numbers only");
+        id = Integer.parseInt(reader.readLine());
+
+        System.out.println("Please enter the name of the city; ");
+        nights = Integer.parseInt(reader.readLine());
+        
+        for (Post x: rentalList){
+            if (x.getID() == id){
+                rentedPosting = x;
+            }
+        }
+
+        totalcost = rentedPosting.getrentalPrice() * nights;
+        System.out.println("The rent per night is " + rentedPosting.getrentalPrice() + " and the total cost is " + totalcost  + " Rent? YES/NO");
+        choice = reader.readLine();
+        if (choice.equals("YES")){
+            System.out.println("Rental successful");
+        rentedPosting.setRented(true);
+        }
+        else if (choice.equals("NO")){
+            System.out.println("Rental cancelled");
+        }
+
+        BufferedWriter fw = new BufferedWriter(new FileWriter("dailyTransactions.txt", true));
+        fw.write("Rental id" + id + " was rented for " + nights + " nights with a total cost of " + totalcost + ".");
+        fw.newLine();
+        fw.close();
+
         
     }
     public static void search() throws NumberFormatException, IOException{
@@ -142,17 +178,17 @@ public class FrontEnd {
         }
         System.out.println("Found postings");
         for (Post x: returnedSearch){
-            System.out.println("City name" + x.getCityName());
-            System.out.println("Rental price" + x.getrentalPrice());
-            System.out.println("Number of bedrooms" + x.getNumBedrooms());
+            System.out.println("City name " + x.getCityName());
+            System.out.println("Rental price " + x.getrentalPrice());
+            System.out.println("Number of bedrooms " + x.getNumBedrooms());
+            System.out.println("ID:" + x.getID());
         }
-        //passes the city name to search
-        /*if (Search(cityName) == 0 || Search(cityName) == null){
-            System.out.println("Nothing found for " + cityName);
-        }else{
-            System.out.println("Nothing found for " + Search(cityName));
-        }
-        */
+
+        BufferedWriter fw = new BufferedWriter(new FileWriter("dailyTransactions.txt", true));
+        fw.write("A search was for postings in " + cityName + " with a max rent of " + maxRentalPrice + "  And a min number of bedrooms is " + minBedrooms + "was conducted.");
+        fw.newLine();
+        fw.close();
+
     }
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(
@@ -165,19 +201,19 @@ public class FrontEnd {
             if (choice.equals("create")){
                 create();
             }
-            else if (choice.equals("delete")){
+            else if (choice.equals("delete") && currentUser != null){
                 delete();
             }
-            else if (choice.equals("login")){
+            else if (choice.equals("login") ){
                 login();
             }
             else if (choice.equals("logout")){
                 logout();
             }
-            else if (choice.equals ("post")){
+            else if (choice.equals ("post")&& currentUser != null){
                 post();
             }
-            else if (choice.equals ("search")){
+            else if (choice.equals ("search")&& currentUser != null){
                 search();
             }
             else if(choice.equals("test")){
