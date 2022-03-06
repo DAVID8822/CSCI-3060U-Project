@@ -151,7 +151,7 @@ public class FrontEnd {
         else if (choice.equals("NO")){
             System.out.println("Rental cancelled");
         }
-
+        //Writing to transaction file
         BufferedWriter fw = new BufferedWriter(new FileWriter("dailyTransactions.txt", true));
         fw.write("Rental id" + id + " was rented for " + nights + " nights with a total cost of " + totalcost + ".");
         fw.newLine();
@@ -226,7 +226,7 @@ public class FrontEnd {
                 System.out.println("Invalid choice");
             }
           
-        }while(!choice.equals("exit"));
+        }while(!choice.equals("exit")); //exit exits program
 
     }
 
