@@ -89,10 +89,21 @@ public class FrontEnd {
     }
 
     public static void post(){
-           String cityName;
-           double rentalPrice;
-           int numbedrooms;
-           
+            String cityName;
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            System.out.println("Please enter the name of the city; ");
+            cityName = reader.readLine();
+            
+            double rentalPrice;
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            System.out.println("Please enter the price of the unit: ");
+            rentalPrice = reader.readLine();
+
+            int numbedrooms;
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            System.out.println("Please enter the bedroom count: ");
+            numbedrooms = reader.readLine();
+            Post(cityName, rentalPrice, numbedrooms, 1);
     }
     public static void rent(){
         
@@ -138,3 +149,6 @@ public class FrontEnd {
     }
 
   
+
+  
+}
