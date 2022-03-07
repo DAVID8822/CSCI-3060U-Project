@@ -118,7 +118,8 @@ public class FrontEnd {
 
     }
 
-    //Post method to allow user create listiing
+    //Post
+    //This method reads the users inputs for the listing up on the site
     public static void post() throws NumberFormatException, IOException{
             String cityName;
             int id;
@@ -189,7 +190,8 @@ public class FrontEnd {
         
     }
 
-    //Search method for users to search for listing
+    //Search
+    //This method finds the units by city based on the users input. 
     public static void search() throws NumberFormatException, IOException{
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String cityName;
