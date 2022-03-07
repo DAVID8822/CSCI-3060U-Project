@@ -286,11 +286,14 @@ public class FrontEnd {
     //The start of the program, when users run it they will be prompted with a menu to select an option
     //Based on the given input it will process the command and run the appropriate method
     public static void main(String[] args) throws IOException {
+        //TODO LATER: Implement the inputs to work (Use an array to store every transaction input)
+        //Read in inputs from input files
+        //Make output only for each user upon logout
         BufferedReader reader = new BufferedReader(
             new InputStreamReader(System.in));
         String choice;
-
         //Menu options
+        while(reader.readLine() != null){
         do{
             System.out.println("Welcome to OT-BnB");
             System.out.println("Please enter option");
@@ -326,7 +329,7 @@ public class FrontEnd {
             }
           
         }while(!choice.equals("exit")); //exit exits program
-
+    }
     }
 
   
