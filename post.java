@@ -21,8 +21,8 @@ public class Post{
     public int getNumBedrooms(){
         return numbedrooms;
     }
-    public int getrentedFlag(){
-        return numbedrooms;
+    public boolean getrentedFlag(){
+        return rentedFlag;
     }
     public int getID(){
         return id;

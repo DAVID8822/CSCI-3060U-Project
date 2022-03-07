@@ -1,3 +1,16 @@
+/*Welcome to OT-BNB
+//Description: This program is the front end of an application that keeps track of different rental properties much like the real Air-BNB. 
+It supports the creation and deletion of accounts, logging in and out as well as searching for and renting a property functionalities.
+
+Input: The program takes input from 2 files. An available rental units file consisting of properties and a current user accounts file consisting
+of users within the system.
+
+Output: The program's output is the daily transactions text file which keeps track of every action that occurs within the system across all users
+
+How to run: The program is intended to be run from a terminal. Run the java file through the terminal and you will be prompted with a menu of options,
+type in the name of the action you wish to complete and you will be guided through further prompts on the screen. When you wish you exit the program, 
+type exit at the main menu.
+*/
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -12,6 +25,7 @@ public class FrontEnd {
     public static Map<String, User> accountMap = new HashMap<>();
     //Array list to store rental listings
     public static ArrayList<Post> rentalList = new ArrayList<>();
+    //Keeps track of the current logged in user
     public static User currentUser = null;
 
     //Login method
@@ -67,7 +81,8 @@ public class FrontEnd {
             loggedIn = false;
             //Print's daily transaction file after logging out.
             try (BufferedWriter fw = new BufferedWriter(new FileWriter("dailyTransaction.txt", true))) {
-                fw.write(code+" "+username+" "+type+" "+rentalUnit+" "+city+" "+bedrooms+" "+price+" "+nights);
+                //fw.write(code+" "+username+" "+type+" "+rentalUnit+" "+city+" "+bedrooms+" "+price+" "+nights);
+                fw.write(currentUser + " Has logged out");
                 fw.newLine();
                 fw.close();
                 currentUser = null;
