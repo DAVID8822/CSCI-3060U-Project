@@ -2,5 +2,5 @@
 #!/bin/bash
 chdir inputs
 foreach i(*) echo "running test $i"
-    searchIn.txt
+    Input/search_In.txt
 end
