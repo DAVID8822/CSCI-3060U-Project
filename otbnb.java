@@ -18,6 +18,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public class otbnb {
     public static ArrayList<Post> rentalList = new ArrayList<>();
     //Keeps track of the current logged in user
     public static User currentUser = null;
-
+    public static Boolean loggedIn = false;
     //Login method
     //Processes user into the system with their given username and password
     public static void login() throws IOException{
@@ -52,6 +53,7 @@ public class otbnb {
             System.out.println("Actual password is " + accountMap.get(username).getPassword());
             if(accountMap.get(username).getPassword().equals(password)){
                 System.out.println("LOGIN SUCCESS! Welcome to OT-BnB " + username);
+                loggedIn = true;
                 currentUser = accountMap.get(username);
             }
             else{
@@ -65,16 +67,8 @@ public class otbnb {
 
     //Logout method
     //Processes user out of the system
-    public static void logout() throws IOException{
-        Integer code = 0;
-        Integer bedrooms = 0;
-        Integer nights = 0;
-        String username = "";
-        String type ="";
-        String rentalUnit="";
-        String city= "";
-        Double price = 0.0;
-        Boolean loggedIn = false;
+    public static void logout(String outputFile, ArrayList <String> storedOutput) throws IOException{
+        
         
         //Checks to see if there is a user logged into the system currently
         if(loggedIn == true)
@@ -82,16 +76,9 @@ public class otbnb {
             System.out.println("You have successfully logged out.");
             loggedIn = false;
             //Print's daily transaction file after logging out.
-            try (BufferedWriter fw = new BufferedWriter(new FileWriter("dailyTransaction.txt", true))) {
-                //fw.write(code+" "+username+" "+type+" "+rentalUnit+" "+city+" "+bedrooms+" "+price+" "+nights);
-                fw.write(currentUser + " Has logged out");
-                fw.newLine();
-                fw.close();
+                writeFile(outputFile, storedOutput);
                 currentUser = null;
-            }
-            catch(IOException e){
-                e.printStackTrace();
-            }
+      
         }
         else{
             System.out.println("No user is currently logged in.");
@@ -101,7 +88,7 @@ public class otbnb {
 
     //Create method
     //Create a new user onto the system with the user's given credential
-    public static void create() throws IOException{
+    public static void create(ArrayList <String> storedOutput) throws IOException{
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in)); 
         String name;
         String password;
@@ -122,20 +109,14 @@ public class otbnb {
         //Stores newly created user into map
         accountMap.put(name, new User(name, password, userType));
         //Creates a text file with the new user's information
-        try {
-            BufferedWriter fw = new BufferedWriter(new FileWriter("dailyTransactions.txt", true));
-            fw.write("A New " + userType + " user by the name of " + name + " was created. The password is " + password);
-            fw.newLine();
-            fw.close();
-          } catch (IOException e) {
-            e.printStackTrace();
-          }
+        
+        storedOutput.add("ADD CODES HERE");
      
     }
 
     //Delete method
     //Delete a user's account from the system based on the username provided
-    public static void delete() throws IOException{
+    public static void delete(ArrayList <String> storedOutput) throws IOException{
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String usertoDelete;
 
@@ -147,16 +128,15 @@ public class otbnb {
         accountMap.remove(usertoDelete);
 
         //Writes a file regarding the deleted user
-        BufferedWriter fw = new BufferedWriter(new FileWriter("dailyTransactions.txt", true));
-        fw.write("User " + usertoDelete +  " was deleted");
-        fw.newLine();
-        fw.close();
+        
+        storedOutput.add("ADD CODES HERE");
+
 
     }
 
     //Post method
     //Reads the users inputs for the listing up on the site
-    public static void post() throws NumberFormatException, IOException{
+    public static void post(ArrayList <String> storedOutput) throws NumberFormatException, IOException{
             String cityName;
             int id;
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -183,16 +163,13 @@ public class otbnb {
             rentalList.add(new Post(cityName, rentalPrice, numbedrooms,false, id));
 
             //Generates daily transaction file with posted listing
-            BufferedWriter fw = new BufferedWriter(new FileWriter("dailyTransactions.txt", true));
-            fw.write("A New posting in " + cityName + " with a rent of " + rentalPrice + " was created. The number of bedrooms is " + numbedrooms);
-            fw.newLine();
-            fw.close();
-             
+            
+        storedOutput.add("ADD CODES HERE");
     }
 
     //Rent method
     //User rents a unit based on the id and city given
-    public static void rent() throws NumberFormatException, IOException{
+    public static void rent(ArrayList <String> storedOutput) throws NumberFormatException, IOException{
         int id;
         int nights;
         Post rentedPosting = null;
@@ -230,16 +207,14 @@ public class otbnb {
         }
 
         //Write a transaction file on rent made
-        BufferedWriter fw = new BufferedWriter(new FileWriter("dailyTransactions.txt", true));
-        fw.write("Rental id" + id + " was rented for " + nights + " nights with a total cost of " + totalcost + ".");
-        fw.newLine();
-        fw.close();
-
+       
+        storedOutput.add("ADD CODES HERE");
+  
         
     }
     //Search method
     //Finds the units by city based on the users input. 
-    public static void search() throws NumberFormatException, IOException{
+    public static void search(ArrayList <String> storedOutput) throws NumberFormatException, IOException{
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String cityName;
         double maxRentalPrice;
@@ -276,11 +251,8 @@ public class otbnb {
         }
 
         //Generates daily transaction regarding a search
-        BufferedWriter fw = new BufferedWriter(new FileWriter("dailyTransactions.txt", true));
-        fw.write("A search was for postings in " + cityName + " with a max rent of " + maxRentalPrice + "  And a min number of bedrooms is " + minBedrooms + "was conducted.");
-        fw.newLine();
-        fw.close();
 
+        storedOutput.add("ADD CODES HERE");
     }
     public static String[] readFile(String filename) throws IOException{
         String [] commands = new String [100];
@@ -294,6 +266,15 @@ public class otbnb {
         reader.close();
         return commands;  
     }
+    public static void writeFile(String filename,ArrayList <String> storedOutput) throws IOException{
+    try (BufferedWriter fw = new BufferedWriter(new FileWriter(filename, true))) {
+        for (String message: storedOutput ){
+        fw.write(message);
+        fw.newLine();
+        }
+        fw.close();
+    }
+}
     //Main program
     //The start of the program, when users run it they will be prompted with a menu to select an option
     //Based on the given input it will process the command and run the appropriate method
@@ -304,11 +285,13 @@ public class otbnb {
         BufferedReader reader = new BufferedReader(
             new InputStreamReader(System.in));
         String choice;
+        ArrayList <String> storedOutput = new ArrayList<String>();
         //Menu options
         //To Run, do java otbnb.java rentals.txt users.txt dailyTransactions.txt in a terminal
         String[] userFile =readFile(args[0]); 
         String[] rentalFile=readFile(args[1]);
-        String[] transFile= readFile(args[2]);
+        //String[] transFile= readFile(args[2]);
+        //TODO LATER: Read user file into User map and rent into Rent map by splitting the list and creating objects
 
         do{
             System.out.println("Welcome to OT-BnB");
@@ -316,22 +299,22 @@ public class otbnb {
             System.out.println("create, delete, login, logout, post, search");
             choice = reader.readLine();
             if (choice.equals("create")){
-                create();
+                create(storedOutput);
             }
             else if (choice.equals("delete") && currentUser != null){
-                delete();
+                delete(storedOutput);
             }
             else if (choice.equals("login") ){
                 login();
             }
             else if (choice.equals("logout")){
-                logout();
+                logout(args[2],storedOutput);
             }
             else if (choice.equals ("post")&& currentUser != null){
-                post();
+                post(storedOutput);
             }
             else if (choice.equals ("search")&& currentUser != null){
-                search();
+                search(storedOutput);
             }
             else if(choice.equals("test")){
                 System.out.println("Accountmap" + accountMap);
