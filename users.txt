@@ -1,1 +1,2 @@
-user1 pass 3
+exuser expassword extype
+user1 password1 type1

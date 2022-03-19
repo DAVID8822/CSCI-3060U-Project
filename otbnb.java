@@ -13,12 +13,10 @@ type exit at the main menu.
 */
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
@@ -212,6 +210,7 @@ public class otbnb {
   
         
     }
+
     //Search method
     //Finds the units by city based on the users input. 
     public static void search(ArrayList <String> storedOutput) throws NumberFormatException, IOException{
@@ -264,8 +263,26 @@ public class otbnb {
             count++;
         }
         reader.close();
-        return commands;  
+        return commands;  //Returns the entire file where each line is an index in the array
     }
+
+
+    public static void linetoArray(String [] userFile, String [] rentalFile){ //Reads in from file to maps
+        String[] stringSplit = new String[100];
+        for (String user : userFile){
+            if (user != null){
+            stringSplit = user.split(" "); 
+            accountMap.put(stringSplit[0], new User(stringSplit[0], stringSplit[1], stringSplit[2]));
+            }
+        }
+        for (String rental : rentalFile){
+            if (rental != null){
+            stringSplit = rental.split(" ");
+            rentalList.add(new Post(stringSplit[0],Double.parseDouble(stringSplit[1]), Integer.parseInt(stringSplit[2]),false, Integer.parseInt(stringSplit[3])));
+            }
+        }
+    }  
+
     public static void writeFile(String filename,ArrayList <String> storedOutput) throws IOException{
     try (BufferedWriter fw = new BufferedWriter(new FileWriter(filename, true))) {
         for (String message: storedOutput ){
@@ -274,6 +291,7 @@ public class otbnb {
         }
         fw.close();
     }
+ 
 }
     //Main program
     //The start of the program, when users run it they will be prompted with a menu to select an option
@@ -288,8 +306,10 @@ public class otbnb {
         ArrayList <String> storedOutput = new ArrayList<String>();
         //Menu options
         //To Run, do java otbnb.java rentals.txt users.txt dailyTransactions.txt in a terminal
-        String[] userFile =readFile(args[0]); 
-        String[] rentalFile=readFile(args[1]);
+        String[] userFile =readFile(args[1]); // Contain lines of user file read in 
+        String[] rentalFile=readFile(args[0]);//Contain lines of rental file read in 
+        linetoArray(userFile, rentalFile); //Takes each line and turns it into an array of Strings which are then inputted into hashmaps
+
         //String[] transFile= readFile(args[2]);
         //TODO LATER: Read user file into User map and rent into Rent map by splitting the list and creating objects
 
