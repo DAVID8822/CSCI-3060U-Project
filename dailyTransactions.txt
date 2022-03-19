@@ -8,3 +8,4 @@ A New admin user by the name of newuser was created. The password is password
 A New posting in toronto with a rent of 2.0 was created. The number of bedrooms is 12
 A New posting in york with a rent of 100.0 was created. The number of bedrooms is 3
 A New posting in markham with a rent of 3.0 was created. The number of bedrooms is 2
+A New 23r user by the name of DAVID882 was created. The password is dasfafdsw

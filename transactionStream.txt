@@ -1,5 +1,0 @@
-create
-user321
-password
-admin
-exit

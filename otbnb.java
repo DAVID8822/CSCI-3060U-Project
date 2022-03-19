@@ -13,6 +13,8 @@ type exit at the main menu.
 */
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -20,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
 
-public class FrontEnd {
+public class otbnb {
     //Map to store user's account
     public static Map<String, User> accountMap = new HashMap<>();
     //Array list to store rental listings
@@ -235,7 +237,6 @@ public class FrontEnd {
 
         
     }
-
     //Search method
     //Finds the units by city based on the users input. 
     public static void search() throws NumberFormatException, IOException{
@@ -281,7 +282,18 @@ public class FrontEnd {
         fw.close();
 
     }
-
+    public static String[] readFile(String filename) throws IOException{
+        String [] commands = new String [100];
+        String line;
+        int count = 0;
+        BufferedReader reader = new BufferedReader(new FileReader(filename));
+        while ((line = reader.readLine()) != null){
+            commands[count] = line;
+            count++;
+        }
+        reader.close();
+        return commands;  
+    }
     //Main program
     //The start of the program, when users run it they will be prompted with a menu to select an option
     //Based on the given input it will process the command and run the appropriate method
@@ -293,7 +305,11 @@ public class FrontEnd {
             new InputStreamReader(System.in));
         String choice;
         //Menu options
-        while(reader.readLine() != null){
+        //To Run, do java otbnb.java rentals.txt users.txt dailyTransactions.txt in a terminal
+        String[] userFile =readFile(args[0]); 
+        String[] rentalFile=readFile(args[1]);
+        String[] transFile= readFile(args[2]);
+
         do{
             System.out.println("Welcome to OT-BnB");
             System.out.println("Please enter option");
@@ -329,7 +345,7 @@ public class FrontEnd {
             }
           
         }while(!choice.equals("exit")); //exit exits program
-    }
+    
     }
 
   
