@@ -6,6 +6,6 @@ chdir inputs
 END= ls -l | wc -l
 for ((i=1;i<=END;i++)); do
 # iterate through Inputs folder and send input to function
-    cat Inputs/(*i) | java FrontEnd.java
+    cat Inputs/i*.txt | java FrontEnd.java
 done
 end
