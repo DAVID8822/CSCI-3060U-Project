@@ -1,11 +1,2 @@
-A New admin user by the name of user321 was created. The password is hello321
-A New a user by the name of hello82 was created. The password is hello82
-A New h user by the name of hello was created. The password is hello
-A New a user by the name of david was created. The password is david
-A New a user by the name of david was created. The password is david
-A New a user by the name of david was created. The password is password
-A New admin user by the name of newuser was created. The password is password
-A New posting in toronto with a rent of 2.0 was created. The number of bedrooms is 12
-A New posting in york with a rent of 100.0 was created. The number of bedrooms is 3
-A New posting in markham with a rent of 3.0 was created. The number of bedrooms is 2
-A New 23r user by the name of DAVID882 was created. The password is dasfafdsw
+01_dave_AA_00000000_000000000000000_0_000000_00
+00_dave_AA_00000000_000000000000000_0_000000_00
