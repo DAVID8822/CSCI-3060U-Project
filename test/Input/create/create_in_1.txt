@@ -1,1 +1,8 @@
-DAVID928 admin
+login
+user1
+password1
+create
+user0
+pass1
+AA
+exit

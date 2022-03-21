@@ -1,2 +1,2 @@
-exuser expassword extype
-user1 password1 type1
+exuser expassword AAlog
+user1 password1 AA

@@ -31,8 +31,7 @@ public class otbnb {
     public static Boolean loggedIn = false;
     //Login method
     //Processes user into the system with their given username and password
-    public static void login() throws IOException{
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    public static void login(BufferedReader reader) throws IOException{
         String username;
         String password;
 
@@ -88,8 +87,8 @@ public class otbnb {
 
     //Create method
     //Create a new user onto the system with the user's given credential
-    public static void create(ArrayList <String> storedOutput) throws IOException{
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in)); 
+    public static void create(BufferedReader reader, ArrayList <String> storedOutput) throws IOException{
+
         String name;
         String password;
         String userType;
@@ -317,13 +316,13 @@ public class otbnb {
             System.out.println("create, delete, login, logout, post, search");
             choice = reader.readLine();
             if (choice.equals("create")){
-                create(storedOutput);
+                create(reader,storedOutput);
             }
             else if (choice.equals("delete") && currentUser != null){
                 delete(storedOutput);
             }
             else if (choice.equals("login") ){
-                login();
+                login(reader);
             }
             else if (choice.equals("logout")){
                 logout(args[2],storedOutput);
@@ -334,10 +333,8 @@ public class otbnb {
             else if (choice.equals ("search")&& currentUser != null){
                 search(storedOutput);
             }
-            else if(choice.equals("test")){
-                System.out.println("Accountmap" + accountMap);
-                System.out.println("RentalList" + rentalList);
-                System.out.println("CurrentUser" + currentUser);
+            else if(choice.equals("exit")){
+                System.exit(0);
             }
 
             else{

@@ -1,1 +1,8 @@
-existinguser
+login
+user1
+password1
+create
+user3
+pass3
+SS
+exit
