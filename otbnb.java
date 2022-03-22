@@ -146,8 +146,7 @@ public class otbnb {
             
             //Ask user for the name of the city
             System.out.println("Please enter the name of the city; ");
-            cityName = reader.readLine();
-
+            cityName = reader.readLine().replaceAll("\\s+", "_");
             //Ask user for price of rental unit
             double rentalPrice;
             System.out.println("Please enter the price of the unit: ");
@@ -178,7 +177,7 @@ public class otbnb {
         System.out.println("Please enter an id ");
         id = Integer.parseInt(reader.readLine());
 
-        //Ask user for the city
+        //Ask user for the nights
         System.out.println("Please enter the number of nights you are staying");
         nights = Integer.parseInt(reader.readLine());
         
@@ -226,7 +225,7 @@ public class otbnb {
 
         //Ask user for a city
         System.out.println("Please enter a city to search");
-        cityName = reader.readLine();
+        cityName = reader.readLine().replaceAll("\\s+", "_");
 
         //Ask user for max rental price
         System.out.println("Please enter a max rental price");
