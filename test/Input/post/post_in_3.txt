@@ -1,4 +1,12 @@
+login
+testuser
+testpassword
+post
+574836
 Toronto
-$17.99
-2
-1
+2039.23
+8
+logout
+exit
+
+

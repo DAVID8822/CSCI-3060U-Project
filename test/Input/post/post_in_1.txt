@@ -1,4 +1,12 @@
+login
+testuser
+testpassword
+post
+574839
 Oshawa
-$15.99
+150.99
 2
-1
+logout
+exit
+
+

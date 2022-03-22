@@ -1,4 +1,12 @@
-Burlington
-$15.94
-2
-3
+login
+testuser
+testpassword
+post
+574836
+Richmond_Hill
+913.32
+8
+logout
+exit
+
+

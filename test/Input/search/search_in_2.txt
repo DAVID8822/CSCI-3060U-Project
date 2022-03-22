@@ -1,5 +1,9 @@
-Toronto
-400
-$400
-2
-2
+login
+testuser
+testpassword
+search
+Oshawa
+200
+1
+logout
+exit

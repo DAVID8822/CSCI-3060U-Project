@@ -1,4 +1,12 @@
-Oakville
-$24.99
-1
-2
+login
+testuser
+testpassword
+post
+574836
+Vaughn
+239.23
+8
+logout
+exit
+
+

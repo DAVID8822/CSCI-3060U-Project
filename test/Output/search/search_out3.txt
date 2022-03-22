@@ -7,9 +7,10 @@ LOGIN SUCCESS! Welcome to OT-BnB testuser
 Welcome to OT-BnB
 Please enter option
 create, delete, login, logout, post, search, exit
-Please enter a username
-Please enter a password
-Please enter a user type (AA-admin, FS-full standard, BS-buy standard, SS-sell-standard
+Please enter a city to search
+Please enter a max rental price
+Please enter the minimum bedrooms
+Found postings
 Welcome to OT-BnB
 Please enter option
 create, delete, login, logout, post, search, exit

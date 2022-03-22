@@ -136,10 +136,9 @@ public class otbnb {
 
     //Post method
     //Reads the users inputs for the listing up on the site
-    public static void post(ArrayList <String> storedOutput) throws NumberFormatException, IOException{
+    public static void post(BufferedReader reader,ArrayList <String> storedOutput) throws NumberFormatException, IOException{
             String cityName;
             int id;
-            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
             //Ask user for an id for post
             System.out.println("Please enter an id (Numbers only");
@@ -169,20 +168,19 @@ public class otbnb {
 
     //Rent method
     //User rents a unit based on the id and city given
-    public static void rent(ArrayList <String> storedOutput) throws NumberFormatException, IOException{
+    public static void rent(BufferedReader reader,ArrayList <String> storedOutput) throws NumberFormatException, IOException{
         int id;
         int nights;
         Post rentedPosting = null;
         double totalcost;
         String choice;
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         //Ask user for id of the rental unit
-        System.out.println("Please enter an id (Numbers only");
+        System.out.println("Please enter an id ");
         id = Integer.parseInt(reader.readLine());
 
         //Ask user for the city
-        System.out.println("Please enter the name of the city; ");
+        System.out.println("Please enter the number of nights you are staying");
         nights = Integer.parseInt(reader.readLine());
         
         //Gets the rental unit based on id
@@ -200,7 +198,7 @@ public class otbnb {
         choice = reader.readLine();
         if (choice.equals("YES")){
             System.out.println("Rental successful");
-        rentedPosting.setRented(true);
+            rentedPosting.setRented(true);
         }
         else if (choice.equals("NO")){
             System.out.println("Rental cancelled");
@@ -215,8 +213,7 @@ public class otbnb {
 
     //Search method
     //Finds the units by city based on the users input. 
-    public static void search(ArrayList <String> storedOutput) throws NumberFormatException, IOException{
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    public static void search(BufferedReader reader, ArrayList <String> storedOutput) throws NumberFormatException, IOException{
         String cityName;
         double maxRentalPrice;
         int minBedrooms;
@@ -298,7 +295,7 @@ public class otbnb {
     public static void rewriteRental(String filename, ArrayList<Post> rentList) throws IOException{
         try (BufferedWriter fw = new BufferedWriter(new FileWriter(filename, false))) {
             for (Post entry: rentList ){
-                fw.write(entry.getCityName() + " " + entry.getrentalPrice() + " " + entry.getNumBedrooms() + " " + entry.getID());
+                fw.write(entry.getCityName() + " " + entry.getrentalPrice() + " " + entry.getNumBedrooms() + " " + entry.getID() + " " + entry.getrentedFlag());
                 fw.newLine();
             }
             fw.close();
@@ -338,9 +335,9 @@ public class otbnb {
         do{
             System.out.println("Welcome to OT-BnB");
             System.out.println("Please enter option");
-            System.out.println("create, delete, login, logout, post, search");
+            System.out.println("create, delete, login, logout, post, search, exit");
             choice = reader.readLine();
-            if (choice.equals("create")){
+            if (choice.equals("create" )&& currentUser != null){
                 create(reader,storedOutput);
                 clear(args[1]);
                 rewriteAccount(args[1], accountMap);
@@ -359,12 +356,17 @@ public class otbnb {
                 logout(args[2],storedOutput);
             }
             else if (choice.equals ("post")&& currentUser != null){
-                post(storedOutput);
+                post(reader,storedOutput);
                 clear(args[2]);
-                rewriteRental(args[2], rentalList);
+                rewriteRental(args[0], rentalList);
             }
             else if (choice.equals ("search")&& currentUser != null){
-                search(storedOutput);
+                search(reader,storedOutput);
+            }
+            else if (choice.equals ("rent") && currentUser != null){
+                rent(reader,storedOutput);
+                clear(args[2]);
+                rewriteRental(args[0], rentalList);
             }
             else if(choice.equals("exit")){
                 System.exit(0);
@@ -372,7 +374,7 @@ public class otbnb {
 
             else{
                 System.out.println("Invalid choice");
-                System.out.println("Choices are: create, delete, login, logout, post, search");
+                System.out.println("Choices are: create, delete, login, logout, post, search, rent, exit");
             }
           
         }while(!choice.equals("exit")); //exit exits program

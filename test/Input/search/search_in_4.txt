@@ -1,5 +1,9 @@
-oshawa
-100
-$100
-3
-2
+login
+testuser
+testpassword
+search
+Oshawa
+200
+1
+logout
+exit

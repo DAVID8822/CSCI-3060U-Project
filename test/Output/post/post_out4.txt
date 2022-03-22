@@ -1,8 +1,20 @@
 Welcome to OT-BnB
 Please enter option
-create, delete, login, logout, post, search
-Invalid choice
-Choices are: create, delete, login, logout, post, search
+create, delete, login, logout, post, search, exit
+Please enter your username
+Please enter your password
+LOGIN SUCCESS! Welcome to OT-BnB testuser
 Welcome to OT-BnB
 Please enter option
-create, delete, login, logout, post, search
+create, delete, login, logout, post, search, exit
+Please enter an id (Numbers only
+Please enter the name of the city; 
+Please enter the price of the unit: 
+Please enter the bedroom count: 
+Welcome to OT-BnB
+Please enter option
+create, delete, login, logout, post, search, exit
+You have successfully logged out.
+Welcome to OT-BnB
+Please enter option
+create, delete, login, logout, post, search, exit
