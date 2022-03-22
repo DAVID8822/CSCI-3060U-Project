@@ -1,1 +1,5 @@
-rent "House"
+login
+davidwatt
+ilovecompsci
+logout
+exit
