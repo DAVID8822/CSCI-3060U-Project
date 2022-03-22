@@ -1,6 +1,6 @@
 login
-user1
-password1
+testuser
+testpassword
 create
 user4
 pass4

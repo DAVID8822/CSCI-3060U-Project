@@ -1,0 +1,8 @@
+Welcome to OT-BnB
+Please enter option
+create, delete, login, logout, post, search
+Invalid choice
+Choices are: create, delete, login, logout, post, search
+Welcome to OT-BnB
+Please enter option
+create, delete, login, logout, post, search

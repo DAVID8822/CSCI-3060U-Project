@@ -1,1 +1,7 @@
-DAVID928
+login
+testuser
+testpassword
+delete
+user1
+logout
+exit

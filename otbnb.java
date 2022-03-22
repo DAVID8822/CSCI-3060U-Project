@@ -118,19 +118,17 @@ public class otbnb {
     }
     //Delete method
     //Delete a user's account from the system based on the username provided 
-    public static void delete(ArrayList <String> storedOutput) throws IOException{
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    public static void delete(BufferedReader reader, ArrayList <String> storedOutput) throws IOException{
         String usertoDelete;
-
         //Ask for username to be deleted
         System.out.println("Please enter a username");
         usertoDelete = reader.readLine();
-        String userType = accountMap.get(usertoDelete).userType.toString();
+        String userType = accountMap.get(usertoDelete).userType;
         //Deletes user from system
         accountMap.remove(usertoDelete);
-        
+        System.out.println(usertoDelete + " Deleted");
         //Writes a file regarding the deleted user
-        rewriteAccount("users.txt", accountMap);
+        //rewriteAccount("users.txt", accountMap);
         storedOutput.add("02" + "_" + usertoDelete + "_" + userType + "_" + "00000000" + "_" + "000000000000000" + "_" + "0" + "_" + "000000" + "_"+ "00");
 
 
@@ -349,7 +347,7 @@ public class otbnb {
 
             }
             else if (choice.equals("delete") && currentUser != null){
-                delete(storedOutput);
+                delete(reader,storedOutput);
                 clear(args[1]);
                 rewriteAccount(args[1], accountMap);
 

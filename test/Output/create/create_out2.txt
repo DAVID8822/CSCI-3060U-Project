@@ -3,7 +3,7 @@ Please enter option
 create, delete, login, logout, post, search
 Please enter your username
 Please enter your password
-LOGIN SUCCESS! Welcome to OT-BnB user1
+LOGIN SUCCESS! Welcome to OT-BnB testuser
 Welcome to OT-BnB
 Please enter option
 create, delete, login, logout, post, search

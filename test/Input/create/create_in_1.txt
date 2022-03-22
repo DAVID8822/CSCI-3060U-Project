@@ -1,8 +1,8 @@
 login
-user1
-password1
+testuser
+testpassword
 create
-user0
+user1
 pass1
 AA
 logout
