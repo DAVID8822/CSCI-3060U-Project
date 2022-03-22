@@ -5,6 +5,7 @@ i=$(( i + 1 ))
 echo "POST TEST "${i}" COMPLETE"
 cd ../
 java otbnb.java rentals.txt users.txt dailyTransactions.txt < "test/"$FILE > "test/Output/post/post_out"${i}".txt"
+cat "dailyTransactions.txt" > "test/Output/post/post_dailytransaction"${i} 
 cd test
 done
 

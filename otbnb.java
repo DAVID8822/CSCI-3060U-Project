@@ -13,10 +13,12 @@ type exit at the main menu.
 */
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
@@ -105,11 +107,15 @@ public class otbnb {
 
         //Stores newly created user into map
         accountMap.put(name, new User(name, password, userType));
+ 
         //Creates a text file with the new user's information
         storedOutput.add("01" + "_" + name + "_" + userType + "_" + "00000000" + "_" + "000000000000000" + "_" + "0" + "_" + "000000" + "_"+ "00");
      
     }
-
+    public static void clear(String filename) throws FileNotFoundException{
+        PrintWriter pw = new PrintWriter(filename);
+        pw.close();
+    }
     //Delete method
     //Delete a user's account from the system based on the username provided 
     public static void delete(ArrayList <String> storedOutput) throws IOException{
@@ -119,12 +125,12 @@ public class otbnb {
         //Ask for username to be deleted
         System.out.println("Please enter a username");
         usertoDelete = reader.readLine();
-
+        String userType = accountMap.get(usertoDelete).userType.toString();
         //Deletes user from system
         accountMap.remove(usertoDelete);
-        String userType = accountMap.get(usertoDelete).userType.toString();
-        //Writes a file regarding the deleted user
         
+        //Writes a file regarding the deleted user
+        rewriteAccount("users.txt", accountMap);
         storedOutput.add("02" + "_" + usertoDelete + "_" + userType + "_" + "00000000" + "_" + "000000000000000" + "_" + "0" + "_" + "000000" + "_"+ "00");
 
 
@@ -280,14 +286,37 @@ public class otbnb {
         }
     }  
 
+
+    public static void rewriteAccount(String filename, Map<String,User> accountMap) throws IOException{
+        try (BufferedWriter fw = new BufferedWriter(new FileWriter(filename, true))) {
+            for (Map.Entry<String,User> entry: accountMap.entrySet() ){
+                fw.write(entry.getKey() + " " + entry.getValue().getPassword() + " " + entry.getValue().getUserType() );
+                fw.newLine();
+            }
+            fw.close();
+        }
+    } 
+
+    public static void rewriteRental(String filename, ArrayList<Post> rentList) throws IOException{
+        try (BufferedWriter fw = new BufferedWriter(new FileWriter(filename, false))) {
+            for (Post entry: rentList ){
+                fw.write(entry.getCityName() + " " + entry.getrentalPrice() + " " + entry.getNumBedrooms() + " " + entry.getID());
+                fw.newLine();
+            }
+            fw.close();
+        }
+    } 
+
     public static void writeFile(String filename,ArrayList <String> storedOutput) throws IOException{
-    try (BufferedWriter fw = new BufferedWriter(new FileWriter(filename, true))) {
+    try (BufferedWriter fw = new BufferedWriter(new FileWriter(filename, false))) {
         for (String message: storedOutput ){
             fw.write(message);
             fw.newLine();
         }
         fw.close();
     }
+
+ 
 
     
  
@@ -315,9 +344,15 @@ public class otbnb {
             choice = reader.readLine();
             if (choice.equals("create")){
                 create(reader,storedOutput);
+                clear(args[1]);
+                rewriteAccount(args[1], accountMap);
+
             }
             else if (choice.equals("delete") && currentUser != null){
                 delete(storedOutput);
+                clear(args[1]);
+                rewriteAccount(args[1], accountMap);
+
             }
             else if (choice.equals("login") ){
                 login(reader);
@@ -327,6 +362,8 @@ public class otbnb {
             }
             else if (choice.equals ("post")&& currentUser != null){
                 post(storedOutput);
+                clear(args[2]);
+                rewriteRental(args[2], rentalList);
             }
             else if (choice.equals ("search")&& currentUser != null){
                 search(storedOutput);
