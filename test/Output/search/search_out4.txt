@@ -11,18 +11,6 @@ Please enter a city to search
 Please enter a max rental price
 Please enter the minimum bedrooms
 Found postings
-City name Oshawa
-Rental price 150.99
-Number of bedrooms 2
-ID:574839
-City name Oshawa
-Rental price 150.99
-Number of bedrooms 2
-ID:574839
-City name Oshawa
-Rental price 132.33
-Number of bedrooms 3
-ID:328901
 Welcome to OT-BnB
 Please enter option
 create, delete, login, logout, post, search, exit

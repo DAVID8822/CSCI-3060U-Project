@@ -1,1 +1,9 @@
-3,4
+login
+testuser
+testpassword
+rent
+11345
+10
+NO
+logout
+exit

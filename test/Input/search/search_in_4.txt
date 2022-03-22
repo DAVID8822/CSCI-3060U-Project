@@ -2,7 +2,7 @@ login
 testuser
 testpassword
 search
-Oshawa
+Toronto
 200
 1
 logout

@@ -157,9 +157,8 @@ public class otbnb {
             int numbedrooms;
             System.out.println("Please enter the bedroom count: ");
             numbedrooms = Integer.parseInt(reader.readLine());
-
             //Post the rental unit to the array.
-            rentalList.add(new Post(cityName, rentalPrice, numbedrooms,false, id));
+           // rentalList.add(new Post(cityName, rentalPrice, numbedrooms,id, false));
 
             //Generates daily transaction file with posted listing
             
@@ -196,17 +195,21 @@ public class otbnb {
 
         //Ask for confirmation of rental
         choice = reader.readLine();
-        if (choice.equals("YES")){
+        if (choice.equals("YES") && rentedPosting.getrentedFlag() == false){
             System.out.println("Rental successful");
             rentedPosting.setRented(true);
+            storedOutput.add("05" + "_" + "0000000000" + "_" + "00" + "_" + id + "_" + rentedPosting.getCityName() + "_" + rentedPosting.getNumBedrooms() + "_" + totalcost + "_"+ nights);
         }
         else if (choice.equals("NO")){
             System.out.println("Rental cancelled");
         }
+        else{
+            System.out.println("ERROR: Rental not available anymore");
+        }
 
         //Write a transaction file on rent made
        
-        storedOutput.add("05" + "_" + "0000000000" + "_" + "00" + "_" + id + "_" + rentedPosting.getCityName() + "_" + rentedPosting.getNumBedrooms() + "_" + totalcost + "_"+ nights);
+        
   
         
     }
@@ -276,7 +279,7 @@ public class otbnb {
         for (String rental : rentalFile){
             if (rental != null){
             stringSplit = rental.split(" ");
-            rentalList.add(new Post(stringSplit[0],Double.parseDouble(stringSplit[1]), Integer.parseInt(stringSplit[2]),false, Integer.parseInt(stringSplit[3])));
+            rentalList.add(new Post(stringSplit[0],Double.parseDouble(stringSplit[1]), Integer.parseInt(stringSplit[2]), Integer.parseInt(stringSplit[3]), Boolean.parseBoolean(stringSplit[4])));
             }
         }
     }  

@@ -1,1 +1,9 @@
-Transaction File
+login
+testuser
+testpassword
+rent
+574836
+10
+YES
+logout
+exit

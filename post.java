@@ -6,7 +6,7 @@ public class Post{ //This is a property object
     public boolean rentedFlag = false;
     public int id;
     //Constructor
-    public Post(String cityName, double rentalPrice, int numbedrooms, boolean rentedFlag, int id){
+    public Post(String cityName, double rentalPrice, int numbedrooms,  int id, boolean rentedFlag){
         this.cityName = cityName;
         this.rentalPrice = rentalPrice;
         this.numbedrooms = numbedrooms;

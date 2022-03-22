@@ -1,1 +1,9 @@
-totalCost
+login
+testuser
+testpassword
+rent
+11345
+10
+YES
+logout
+exit

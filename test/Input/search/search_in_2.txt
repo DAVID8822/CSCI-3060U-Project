@@ -2,7 +2,7 @@ login
 testuser
 testpassword
 search
-Oshawa
+Vaughn
 200
 1
 logout
