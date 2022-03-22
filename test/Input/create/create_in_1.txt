@@ -5,4 +5,5 @@ create
 user0
 pass1
 AA
+logout
 exit

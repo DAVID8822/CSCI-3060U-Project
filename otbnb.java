@@ -46,8 +46,6 @@ public class otbnb {
         //Validates user's account
         //Checks if username and password matches in the accountMap then processes login accordingly
         if (accountMap.containsKey(username)){
-            System.out.println("Inputted password is " + password);
-            System.out.println("Actual password is " + accountMap.get(username).getPassword());
             if(accountMap.get(username).getPassword().equals(password)){
                 System.out.println("LOGIN SUCCESS! Welcome to OT-BnB " + username);
                 loggedIn = true;
@@ -285,8 +283,8 @@ public class otbnb {
     public static void writeFile(String filename,ArrayList <String> storedOutput) throws IOException{
     try (BufferedWriter fw = new BufferedWriter(new FileWriter(filename, true))) {
         for (String message: storedOutput ){
-            fw.newLine();
             fw.write(message);
+            fw.newLine();
         }
         fw.close();
     }

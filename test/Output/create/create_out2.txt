@@ -3,8 +3,6 @@ Please enter option
 create, delete, login, logout, post, search
 Please enter your username
 Please enter your password
-Inputted password is password1
-Actual password is password1
 LOGIN SUCCESS! Welcome to OT-BnB user1
 Welcome to OT-BnB
 Please enter option
@@ -12,6 +10,10 @@ create, delete, login, logout, post, search
 Please enter a username
 Please enter a password
 Please enter a user type (AA-admin, FS-full standard, BS-buy standard, SS-sell-standard
+Welcome to OT-BnB
+Please enter option
+create, delete, login, logout, post, search
+You have successfully logged out.
 Welcome to OT-BnB
 Please enter option
 create, delete, login, logout, post, search

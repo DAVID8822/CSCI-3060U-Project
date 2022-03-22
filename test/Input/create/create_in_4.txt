@@ -2,7 +2,8 @@ login
 user1
 password1
 create
-user3
-pass3
-AA
+user4
+pass4
+SS
+logout
 exit
