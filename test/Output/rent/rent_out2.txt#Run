@@ -1,0 +1,20 @@
+Welcome to OT-BnB
+Please enter option
+create, delete, login, logout, post, search, exit
+Please enter your username
+Please enter your password
+LOGIN SUCCESS! Welcome to OT-BnB testuser
+Welcome to OT-BnB
+Please enter option
+create, delete, login, logout, post, search, exit
+Please enter an id 
+Please enter the number of nights you are staying
+The rent per night is 120.32 and the total cost is 1203.1999999999998 Rent? YES/NO
+ERROR: Rental not available anymore
+Welcome to OT-BnB
+Please enter option
+create, delete, login, logout, post, search, exit
+You have successfully logged out.
+Welcome to OT-BnB
+Please enter option
+create, delete, login, logout, post, search, exit

@@ -20,8 +20,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class otbnb {
     //Map to store user's account
@@ -93,17 +96,21 @@ public class otbnb {
         String password;
         String userType;
 
-        //Ask user for username
         System.out.println("Please enter a username");
         name = reader.readLine();
+    
+        
 
         //Ask user for password
         System.out.println("Please enter a password");
         password = reader.readLine();
 
         //Ask user for account type
+        List <String> acceptedValues = Arrays.asList("AA","FS","BS","SS");
+        
         System.out.println("Please enter a user type (AA-admin, FS-full standard, BS-buy standard, SS-sell-standard");
         userType = reader.readLine();
+
 
         //Stores newly created user into map
         accountMap.put(name, new User(name, password, userType));
@@ -128,7 +135,6 @@ public class otbnb {
         accountMap.remove(usertoDelete);
         System.out.println(usertoDelete + " Deleted");
         //Writes a file regarding the deleted user
-        //rewriteAccount("users.txt", accountMap);
         storedOutput.add("02" + "_" + usertoDelete + "_" + userType + "_" + "00000000" + "_" + "000000000000000" + "_" + "0" + "_" + "000000" + "_"+ "00");
 
 
@@ -146,7 +152,7 @@ public class otbnb {
             
             //Ask user for the name of the city
             System.out.println("Please enter the name of the city; ");
-            cityName = reader.readLine().replaceAll("\\s+", "_");
+            cityName = reader.readLine();
             //Ask user for price of rental unit
             double rentalPrice;
             System.out.println("Please enter the price of the unit: ");
@@ -157,7 +163,15 @@ public class otbnb {
             System.out.println("Please enter the bedroom count: ");
             numbedrooms = Integer.parseInt(reader.readLine());
             //Post the rental unit to the array.
-           // rentalList.add(new Post(cityName, rentalPrice, numbedrooms,id, false));
+            rentalList.add(new Post(cityName, rentalPrice, numbedrooms,id, false));
+            for(int i=0; i<rentalList.size()-1; i++) {
+                ListIterator<?> iter = rentalList.listIterator(i+1);
+                while(iter.hasNext()) {
+                    if(rentalList.get(i).equals(iter.next())) {
+                        iter.remove();
+                    }
+                }
+            }
 
             //Generates daily transaction file with posted listing
             
@@ -225,13 +239,13 @@ public class otbnb {
 
         //Ask user for a city
         System.out.println("Please enter a city to search");
-        cityName = reader.readLine().replaceAll("\\s+", "_");
+        cityName = reader.readLine();
 
         //Ask user for max rental price
         System.out.println("Please enter a max rental price");
         maxRentalPrice = Double.parseDouble(reader.readLine());
 
-        //Ask user for minimum amount of bedrooms
+        //Ask user for minimum amount of bedroomsr
         System.out.println("Please enter the minimum bedrooms");
         minBedrooms = Integer.parseInt(reader.readLine());
 
@@ -271,13 +285,13 @@ public class otbnb {
         String[] stringSplit = new String[100];
         for (String user : userFile){
             if (user != null){
-            stringSplit = user.split(" "); 
+            stringSplit = user.split("_"); 
             accountMap.put(stringSplit[0], new User(stringSplit[0], stringSplit[1], stringSplit[2]));
             }
         }
         for (String rental : rentalFile){
             if (rental != null){
-            stringSplit = rental.split(" ");
+            stringSplit = rental.split("_");
             rentalList.add(new Post(stringSplit[0],Double.parseDouble(stringSplit[1]), Integer.parseInt(stringSplit[2]), Integer.parseInt(stringSplit[3]), Boolean.parseBoolean(stringSplit[4])));
             }
         }
@@ -287,7 +301,7 @@ public class otbnb {
     public static void rewriteAccount(String filename, Map<String,User> accountMap) throws IOException{
         try (BufferedWriter fw = new BufferedWriter(new FileWriter(filename, true))) {
             for (Map.Entry<String,User> entry: accountMap.entrySet() ){
-                fw.write(entry.getKey() + " " + entry.getValue().getPassword() + " " + entry.getValue().getUserType() );
+                fw.write(entry.getKey() + "_" + entry.getValue().getPassword() + "_" + entry.getValue().getUserType() );
                 fw.newLine();
             }
             fw.close();
@@ -295,9 +309,9 @@ public class otbnb {
     } 
 
     public static void rewriteRental(String filename, ArrayList<Post> rentList) throws IOException{
-        try (BufferedWriter fw = new BufferedWriter(new FileWriter(filename, false))) {
+        try (BufferedWriter fw = new BufferedWriter(new FileWriter(filename, true))) {
             for (Post entry: rentList ){
-                fw.write(entry.getCityName() + " " + entry.getrentalPrice() + " " + entry.getNumBedrooms() + " " + entry.getID() + " " + entry.getrentedFlag());
+                fw.write(entry.getCityName() + "_" + entry.getrentalPrice() + "_" + entry.getNumBedrooms() + "_" + entry.getID() + "_" + entry.getrentedFlag());
                 fw.newLine();
             }
             fw.close();
@@ -359,7 +373,8 @@ public class otbnb {
             }
             else if (choice.equals ("post")&& currentUser != null){
                 post(reader,storedOutput);
-                clear(args[2]);
+                System.out.println("RUN MOTHERFUCKER");
+                clear(args[0]);
                 rewriteRental(args[0], rentalList);
             }
             else if (choice.equals ("search")&& currentUser != null){
@@ -367,7 +382,7 @@ public class otbnb {
             }
             else if (choice.equals ("rent") && currentUser != null){
                 rent(reader,storedOutput);
-                clear(args[2]);
+                clear(args[0]);
                 rewriteRental(args[0], rentalList);
             }
             else if(choice.equals("exit")){
