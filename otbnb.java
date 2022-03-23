@@ -182,15 +182,32 @@ public class otbnb {
         Post rentedPosting = null;
         double totalcost;
         String choice;
-
+        id = 0;
         //Ask user for id of the rental unit
-        System.out.println("Please enter an id ");
-        id = Integer.parseInt(reader.readLine());
-
+        boolean inputVerify = false;
+        while(inputVerify == false){
+            System.out.println("Please enter an id ");
+            id = Integer.parseInt(reader.readLine());
+            if((id > 10000) || (id < 0)){
+                continue;
+            }else{
+                break;
+            }
+        }
         //Ask user for the nights
-        System.out.println("Please enter the number of nights you are staying");
-        nights = Integer.parseInt(reader.readLine());
-        
+        // System.out.println("Please enter the number of nights you are staying");
+        // nights = Integer.parseInt(reader.readLine());
+        boolean inputVerify2 = false;
+        nights = 0;
+        while(inputVerify2 == false){
+            System.out.println("Please enter the number of nights you are staying");
+            nights = Integer.parseInt(reader.readLine());
+            if((nights > 365) || (nights < 0)){
+                continue;
+            }else{
+                break;
+            }
+        }
         //Gets the rental unit based on id
         for (Post x: rentalList){
             if (x.getID() == id){
