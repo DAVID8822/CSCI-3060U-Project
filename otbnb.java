@@ -106,8 +106,6 @@ public class otbnb {
         password = reader.readLine();
 
         //Ask user for account type
-        List <String> acceptedValues = Arrays.asList("AA","FS","BS","SS");
-        
         System.out.println("Please enter a user type (AA-admin, FS-full standard, BS-buy standard, SS-sell-standard");
         userType = reader.readLine();
 
