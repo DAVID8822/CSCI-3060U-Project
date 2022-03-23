@@ -373,7 +373,6 @@ public class otbnb {
             }
             else if (choice.equals ("post")&& currentUser != null){
                 post(reader,storedOutput);
-                System.out.println("RUN MOTHERFUCKER");
                 clear(args[0]);
                 rewriteRental(args[0], rentalList);
             }
