@@ -143,14 +143,14 @@ public class otbnb {
     public static void post(BufferedReader reader,ArrayList <String> storedOutput) throws NumberFormatException, IOException{
             String cityName;
             int id;
-
+            
             //Ask user for an id for post
             System.out.println("Please enter an id (Numbers only");
             id = Integer.parseInt(reader.readLine());
             
             //Ask user for the name of the city
             System.out.println("Please enter the name of the city; ");
-            cityName = reader.readLine();
+            cityName = reader.readLine().replaceAll("\\s+", "_");
             //Ask user for price of rental unit
             double rentalPrice;
             System.out.println("Please enter the price of the unit: ");
@@ -158,17 +158,15 @@ public class otbnb {
 
             //Ask user for amount of bedrooms in unit
             int numbedrooms;
-            System.out.println("Please enter the bedroom count: ");
-            numbedrooms = Integer.parseInt(reader.readLine());
-            //Post the rental unit to the array.
-            rentalList.add(new Post(cityName, rentalPrice, numbedrooms,id, false));
-            for(int i=0; i<rentalList.size()-1; i++) {
-                ListIterator<?> iter = rentalList.listIterator(i+1);
-                while(iter.hasNext()) {
-                    if(rentalList.get(i).equals(iter.next())) {
-                        iter.remove();
-                    }
-                }
+            numbedrooms = 0;
+            Boolean valInput = false;
+            while(valInput == false){
+                System.out.println("Please enter the bedroom count: ");
+                numbedrooms = Integer.parseInt(reader.readLine());
+                if((numbedrooms > 7) || (numbedrooms < 0))
+                    continue;
+                else
+                    valInput = true;
             }
 
             //Generates daily transaction file with posted listing
@@ -180,18 +178,37 @@ public class otbnb {
     //User rents a unit based on the id and city given
     public static void rent(BufferedReader reader,ArrayList <String> storedOutput) throws NumberFormatException, IOException{
         int id;
+        id = 0;
         int nights;
+        nights = 0;
         Post rentedPosting = null;
         double totalcost;
         String choice;
-
+        Boolean valInput = false;
+        while(valInput == false){
+            System.out.println("Please enter an id ");
+            id = Integer.parseInt(reader.readLine());
+            if((id < 0) || (id > 1000000))
+                continue;
+            else
+                valInput = true;
+            }
+        valInput = false;
         //Ask user for id of the rental unit
-        System.out.println("Please enter an id ");
-        id = Integer.parseInt(reader.readLine());
+        // System.out.println("Please enter an id ");
+        // id = Integer.parseInt(reader.readLine());
 
         //Ask user for the nights
-        System.out.println("Please enter the number of nights you are staying");
-        nights = Integer.parseInt(reader.readLine());
+        while(valInput == false){
+            System.out.println("Please enter the number of nights you are staying");
+            nights = Integer.parseInt(reader.readLine());
+            if((nights < 0) || (nights > 365))
+                continue;
+            else
+                valInput = true;
+            }
+        // System.out.println("Please enter the number of nights you are staying");
+        // nights = Integer.parseInt(reader.readLine());
         
         //Gets the rental unit based on id
         for (Post x: rentalList){
@@ -217,12 +234,6 @@ public class otbnb {
         else{
             System.out.println("ERROR: Rental not available anymore");
         }
-
-        //Write a transaction file on rent made
-       
-        
-  
-        
     }
 
     //Search method
