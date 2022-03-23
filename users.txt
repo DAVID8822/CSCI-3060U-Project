@@ -1,4 +1,8 @@
-testuser testpassword AA
-davidwatt ilovecompsci BS
-admin admin AA
+user1 pass1 AA
+user2 pass2 AA
 human932 flowers321 SS
+testuser testpassword AA
+admin admin AA
+davidwatt ilovecompsci BS
+user3 pass3 SS
+user4 pass4 SS
