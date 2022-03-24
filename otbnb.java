@@ -20,9 +20,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.ListIterator;
 import java.util.Map;
+import java.util.Set;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class otbnb {
     //Map to store user's account
@@ -42,13 +45,13 @@ public class otbnb {
         System.out.println("Please enter your username");
         while((username = reader.readLine()).isEmpty()){
             System.out.println("Username cannot be empty try again");
-          }
+        }
 
         //Ask user for password
         System.out.println("Please enter your password");
         while((password = reader.readLine()).isEmpty()){
             System.out.println("Password cannot be empty try again");
-          }
+        }
         
         //Validates user's account
         //Checks if username and password matches in the accountMap then processes login accordingly
@@ -93,24 +96,30 @@ public class otbnb {
     //Create method
     //Create a new user onto the system with the user's given credential
     public static void create(BufferedReader reader, ArrayList <String> storedOutput) throws IOException{
-
+        Set<String> accept = new HashSet<String>(Arrays.asList(new String[] {"AA", "FS", "BS", "SS"}));
         String name;
         String password;
         String userType;
 
         System.out.println("Please enter a username");
-        name = reader.readLine();
+        while((name = reader.readLine()).isEmpty()){
+            System.out.println("Username cannot be empty try again");
+        }
     
         
 
         //Ask user for password
         System.out.println("Please enter a password");
-        password = reader.readLine();
+        while((password = reader.readLine()).isEmpty()){
+            System.out.println("Password cannot be empty try again");
+        }
 
         //Ask user for account type
-        System.out.println("Please enter a user type (AA-admin, FS-full standard, BS-buy standard, SS-sell-standard");
-        userType = reader.readLine();
-
+        System.out.println("Please enter a user type (AA-admin, FS-full standard, BS-buy standard, SS-sell-standard)");
+        while(!accept.contains(userType = reader.readLine())){
+            System.out.println("Invalid user type");
+            System.out.println("Must be AA-admin, FS-full standard, BS-buy standard, SS-sell-standard");
+        }
 
         //Stores newly created user into map
         accountMap.put(name, new User(name, password, userType));
