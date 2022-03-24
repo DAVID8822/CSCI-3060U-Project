@@ -140,7 +140,7 @@ public class otbnb {
         while (!accountMap.containsKey(usertoDelete = reader.readLine())){
             System.out.println("User does not exist in system");
         }
-        
+
         String userType = accountMap.get(usertoDelete).userType;
         //Deletes user from system
         accountMap.remove(usertoDelete);
@@ -156,18 +156,39 @@ public class otbnb {
     public static void post(BufferedReader reader,ArrayList <String> storedOutput) throws NumberFormatException, IOException{
             String cityName;
             int id;
+            // Boolean flag = true;
 
             //Ask user for an id for post
             System.out.println("Please enter an id (Numbers only");
             id = Integer.parseInt(reader.readLine());
+            // while(flag == true){
+            //     try{
+            //         id = Integer.parseInt(reader.readLine());
+            //         flag = false;
+            //     }
+            //     catch(NumberFormatException e){
+            //         System.out.println("Invalid number input");
+            //     }
+            // }
             
             //Ask user for the name of the city
             System.out.println("Please enter the name of the city; ");
-            cityName = reader.readLine();
+            while((cityName = reader.readLine()).isEmpty()){
+                System.out.println("City cannot be empty try again");
+            }
             //Ask user for price of rental unit
             double rentalPrice;
             System.out.println("Please enter the price of the unit: ");
             rentalPrice = Double.parseDouble(reader.readLine());
+            // while(flag == true){
+            //     try{
+            //         rentalPrice = Double.parseDouble(reader.readLine());
+            //         flag = false;
+            //     }
+            //     catch(NumberFormatException e){
+            //         System.out.println("Invalid price input");
+            //     }
+            // }
 
             //Ask user for amount of bedrooms in unit
             int numbedrooms;
@@ -268,8 +289,9 @@ public class otbnb {
 
         //Ask user for a city
         System.out.println("Please enter a city to search");
-        cityName = reader.readLine();
-
+        while((cityName = reader.readLine()).isEmpty()){
+            System.out.println("City cannot be empty try again");
+        }
         //Ask user for max rental price
         System.out.println("Please enter a max rental price");
         maxRentalPrice = Double.parseDouble(reader.readLine());
