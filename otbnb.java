@@ -60,7 +60,6 @@ public class otbnb {
                 System.out.println("LOGIN SUCCESS! Welcome to OT-BnB " + username);
                 loggedIn = true;
                 currentUser = accountMap.get(username);
-                
             }
             else{
                 System.out.println("Invalid password");
@@ -138,7 +137,10 @@ public class otbnb {
         String usertoDelete;
         //Ask for username to be deleted
         System.out.println("Please enter a username");
-        usertoDelete = reader.readLine();
+        while (!accountMap.containsKey(usertoDelete = reader.readLine())){
+            System.out.println("User does not exist in system");
+        }
+        
         String userType = accountMap.get(usertoDelete).userType;
         //Deletes user from system
         accountMap.remove(usertoDelete);
