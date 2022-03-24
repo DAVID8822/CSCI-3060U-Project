@@ -40,11 +40,15 @@ public class otbnb {
 
         //Ask user for username
         System.out.println("Please enter your username");
-        username = reader.readLine();
+        while((username = reader.readLine()).isEmpty()){
+            System.out.println("Username cannot be empty try again");
+          }
 
         //Ask user for password
         System.out.println("Please enter your password");
-        password = reader.readLine();
+        while((password = reader.readLine()).isEmpty()){
+            System.out.println("Password cannot be empty try again");
+          }
         
         //Validates user's account
         //Checks if username and password matches in the accountMap then processes login accordingly
