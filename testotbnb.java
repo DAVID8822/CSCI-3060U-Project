@@ -21,7 +21,15 @@ public class testotbnb {
         otbnb otbnb= new otbnb(accountMap,rentalList,null,false);
     }
 
-
+    @Test
+    public void testlogout1true(){
+        otbnb.loggedIn = true;
+        assertTrue(otbnb.loggedIn); //Test makes sure that the program can tell when a user is logged in
+    }
+    @Test
+    public void testlogout1false(){
+        assertTrue(!otbnb.loggedIn); //Test makes sure that the program can tell when a user is not logged in
+    }
 
     @Test
     public void testlogin1true(){
