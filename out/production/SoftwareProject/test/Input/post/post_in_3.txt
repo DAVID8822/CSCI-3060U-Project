@@ -1,0 +1,12 @@
+login
+testuser
+testpassword
+post
+574836
+Toronto
+2039.23
+8
+logout
+exit
+
+

@@ -1,0 +1,9 @@
+login
+testuser
+testpassword
+create
+user3
+pass3
+SS
+logout
+exit

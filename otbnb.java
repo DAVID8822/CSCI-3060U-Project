@@ -1,3 +1,4 @@
+
 /*Welcome to OT-BNB
 //Description: This program is the front end of an application that keeps track of different rental properties much like the real Air-BNB. 
 It supports the creation and deletion of accounts, logging in and out as well as searching for and renting a property functionalities.
@@ -35,6 +36,13 @@ public class otbnb {
     //Keeps track of the current logged in user
     public static User currentUser = null;
     public static Boolean loggedIn = false;
+
+    public otbnb (Map<String,User> accountMap, ArrayList<Post> rentalList, User currentUser, Boolean loggedIn){
+        this.accountMap = accountMap;
+        this.rentalList = rentalList;
+        this.currentUser = currentUser;
+        this.loggedIn = loggedIn;
+    }
     //Login method
     //Processes user into the system with their given username and password
     public static void login(BufferedReader reader) throws IOException{

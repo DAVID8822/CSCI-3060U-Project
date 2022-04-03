@@ -1,0 +1,9 @@
+login
+testuser
+testpassword
+rent
+574836
+10
+NO
+logout
+exit

@@ -1,0 +1,9 @@
+login
+testuser
+testpassword
+search
+Toronto
+200
+1
+logout
+exit

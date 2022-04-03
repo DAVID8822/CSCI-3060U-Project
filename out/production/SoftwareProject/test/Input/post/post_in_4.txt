@@ -1,0 +1,12 @@
+login
+testuser
+testpassword
+post
+574836
+Richmond Hill
+913.32
+8
+logout
+exit
+
+

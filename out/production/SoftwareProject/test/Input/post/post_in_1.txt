@@ -1,0 +1,12 @@
+login
+testuser
+testpassword
+post
+574839
+Oshawa
+150.99
+2
+logout
+exit
+
+

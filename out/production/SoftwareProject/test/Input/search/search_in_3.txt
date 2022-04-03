@@ -1,0 +1,9 @@
+login
+testuser
+testpassword
+search
+Richmond_Hill
+200
+1
+logout
+exit

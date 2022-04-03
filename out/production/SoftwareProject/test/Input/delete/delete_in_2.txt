@@ -1,0 +1,7 @@
+login
+testuser
+testpassword
+delete
+user2
+logout
+exit
