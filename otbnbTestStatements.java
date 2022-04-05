@@ -10,11 +10,6 @@ class 257 {
 		Assertions.assertEquals();
 	}
 	@Test
-	void testStatementLine66Test2() {
-		System.out.println("");
-		Assertions.assertEquals();
-	}
-	@Test
 	void testStatementLine67Test1() {
 		System.out.println("");
 		Assertions.assertEquals();
