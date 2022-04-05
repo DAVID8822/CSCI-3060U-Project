@@ -4,31 +4,36 @@ import org.junit.jupiter.api.Test;
 
 class 257 {
 	@Test
-	void testStatementLine210Test1() {
-		System.out.println("");
-		Assertions.assertEquals();
+	void testStatementLine201TestPost() {
+		System.out.println("Checking post");
+		Assertions.assertEquals(iter);
 	}
 	@Test
-	void testStatementLine235Test1() {
-		System.out.println("");
-		Assertions.assertEquals();
+	void testStatementLine206TestRent() {
+		System.out.println("Testing Rent 1");
+//		Assertions.assertEquals();
 	}
 	@Test
-	void testStatementLine249Test1() {
+	void testStatementLine240TestRent() {
+		System.out.println("Testing Rent 2");
+//		Assertions.assertEquals();
+	}
+	@Test
+	void testStatementLine248TestRent() {
+		System.out.println("Rent Test 3");
+		Assertions.assertEquals(rentedPosting);
+	}
+
+	@Test
+	void testStatementLine259TestRent() {
 		System.out.println("");
 		Assertions.assertEquals();
 	}
 
 	@Test
-	void testStatementLine257Test2() {
+	void testStatementLine268TestRent() {
 		System.out.println("");
-		Assertions.assertEquals();
-	}
-
-	@Test
-	void testStatementLine268Test2() {
-		System.out.println("");
-		Assertions.assertEquals();
+		Assertions.assertEquals(id, rentedPosting.getCityName(), rentedPosting.getNumBedrooms(), totalcost,  nights);
 	}
 
 	@Test
