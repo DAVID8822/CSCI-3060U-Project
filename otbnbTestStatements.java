@@ -27,82 +27,29 @@ class 257 {
 	@Test
 	void testStatementLine259TestRent() {
 		System.out.println("");
-		Assertions.assertEquals();
-	}
-
-	@Test
-	void testStatementLine268TestRent() {
-		System.out.println("");
 		Assertions.assertEquals(id, rentedPosting.getCityName(), rentedPosting.getNumBedrooms(), totalcost,  nights);
 	}
 
 	@Test
-	void testStatementLine273Test2() {
+	void testStatementLine303TestRent() {
 		System.out.println("");
-		Assertions.assertEquals();
-	}
-	@Test
-	void testStatementLine313Test1() {
-		System.out.println("");
-		Assertions.assertEquals();
+		Assertions.assertEquals(currPost);
 	}
 
 	@Test
-	void testStatementLine346Test1() {
+	void testStatementLine337Test2() {
+		System.out.println("linetoArray");
+		Assertions.assertEquals(stringSplit[0], new User(stringSplit[0], stringSplit[1], stringSplit[2]));
+	}
+	@Test
+	void testStatementLine343Test() {
 		System.out.println("");
-		Assertions.assertEquals();
+		Assertions.assertEquals(stringSplit[0],Double.parseDouble(stringSplit[1]), Integer.parseInt(stringSplit[2]), Integer.parseInt(stringSplit[3]), Boolean.parseBoolean(stringSplit[4])));
 	}
 
 	@Test
-	void testStatementLine352Test1() {
+	void testStatementLine406Test1() {
 		System.out.println("");
-		Assertions.assertEquals();
-	}
-
-	@Test
-	void testStatementLine352Test1() {
-		System.out.println("");
-		Assertions.assertEquals();
-	}
-
-	@Test
-	void testStatementLine415Test2() {
-		System.out.println("");
-		Assertions.assertEquals();
-	}
-	@Test
-	void testStatementLine421Test2() {
-		System.out.println("");
-		Assertions.assertEquals();
-	}
-	@Test
-	void testStatementLine427Test2() {
-		System.out.println("");
-		Assertions.assertEquals();
-	}
-	@Test
-	void testStatementLine430Test2() {
-		System.out.println("");
-		Assertions.assertEquals();
-	}
-	@Test
-	void testStatementLine433Test2() {
-		System.out.println("");
-		Assertions.assertEquals();
-	}
-	@Test
-	void testStatementLine438Test2() {
-		System.out.println("");
-		Assertions.assertEquals();
-	}
-	@Test
-	void testStatementLine441Test2() {
-		System.out.println("");
-		Assertions.assertEquals();
-	}
-	@Test
-	void testStatementLine446Test2() {
-		System.out.println("");
-		Assertions.assertEquals();
+		Assertions.assertEquals(reader,storedOutput, args[1], args[1], accountMap);
 	}
 }
