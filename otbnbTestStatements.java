@@ -15,17 +15,7 @@ class 257 {
 		Assertions.assertEquals();
 	}
 	@Test
-	void testStatementLine67Test2() {
-		System.out.println("");
-		Assertions.assertEquals();
-	}
-	@Test
 	void testStatementLine87Test1() {
-		System.out.println("");
-		Assertions.assertEquals();
-	}
-	@Test
-	void testStatementLine87Test2() {
 		System.out.println("");
 		Assertions.assertEquals();
 	}
@@ -35,65 +25,28 @@ class 257 {
 		Assertions.assertEquals();
 	}
 	@Test
-	void testStatementLine210Test2() {
-		System.out.println("");
-		Assertions.assertEquals();
-	}
-	@Test
 	void testStatementLine235Test1() {
 		System.out.println("");
 		Assertions.assertEquals();
 	}
 	@Test
-	void testStatementLine235Test2() {
-		System.out.println("");
-		Assertions.assertEquals();
-	}
-	@Test
 	void testStatementLine249Test1() {
 		System.out.println("");
 		Assertions.assertEquals();
 	}
-	@Test
-	void testStatementLine249Test2() {
-		System.out.println("");
-		Assertions.assertEquals();
-	}
-	@Test
-	void testStatementLine249Test1() {
-		System.out.println("");
-		Assertions.assertEquals();
-	}
-	@Test
-	void testStatementLine249Test2() {
-		System.out.println("");
-		Assertions.assertEquals();
-	}
-	@Test
-	void testStatementLine257Test1() {
-		System.out.println("");
-		Assertions.assertEquals();
-	}
+
 	@Test
 	void testStatementLine257Test2() {
 		System.out.println("");
 		Assertions.assertEquals();
 	}
-	@Test
-	void testStatementLine268Test1() {
-		System.out.println("");
-		Assertions.assertEquals();
-	}
+
 	@Test
 	void testStatementLine268Test2() {
 		System.out.println("");
 		Assertions.assertEquals();
 	}
-	@Test
-	void testStatementLine273Test1() {
-		System.out.println("");
-		Assertions.assertEquals();
-	}
+
 	@Test
 	void testStatementLine273Test2() {
 		System.out.println("");
@@ -104,41 +57,25 @@ class 257 {
 		System.out.println("");
 		Assertions.assertEquals();
 	}
-	@Test
-	void testStatementLine313Test2() {
-		System.out.println("");
-		Assertions.assertEquals();
-	}
+
 	@Test
 	void testStatementLine346Test1() {
 		System.out.println("");
 		Assertions.assertEquals();
 	}
-	@Test
-	void testStatementLine346Test2() {
-		System.out.println("");
-		Assertions.assertEquals();
-	}
+
 	@Test
 	void testStatementLine352Test1() {
 		System.out.println("");
 		Assertions.assertEquals();
 	}
-	@Test
-	void testStatementLine352Test2() {
-		System.out.println("");
-		Assertions.assertEquals();
-	}
+
 	@Test
 	void testStatementLine352Test1() {
 		System.out.println("");
 		Assertions.assertEquals();
 	}
-	@Test
-	void testStatementLine352Test2() {
-		System.out.println("");
-		Assertions.assertEquals();
-	}
+
 	@Test
 	void testStatementLine415Test2() {
 		System.out.println("");
