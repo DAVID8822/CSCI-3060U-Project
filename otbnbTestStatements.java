@@ -3,17 +3,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 class 257 {
-
-	@Test
-	void testStatementLine66Test1() {
-		System.out.println("");
-		Assertions.assertEquals();
-	}
-	@Test
-	void testStatementLine67Test1() {
-		System.out.println("");
-		Assertions.assertEquals();
-	}
 	@Test
 	void testStatementLine87Test1() {
 		System.out.println("");
