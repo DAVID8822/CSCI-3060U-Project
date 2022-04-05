@@ -4,11 +4,6 @@ import org.junit.jupiter.api.Test;
 
 class 257 {
 	@Test
-	void testStatementLine87Test1() {
-		System.out.println("");
-		Assertions.assertEquals();
-	}
-	@Test
 	void testStatementLine210Test1() {
 		System.out.println("");
 		Assertions.assertEquals();
