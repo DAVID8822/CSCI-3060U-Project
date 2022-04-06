@@ -1,9 +1,0 @@
-Welcome to OT-BnB
-Please enter option
-create, delete, login, logout, post, search, exit
-Please enter your username
-Please enter your password
-LOGIN SUCCESS! Welcome to OT-BnB human932
-Welcome to OT-BnB
-Please enter option
-create, delete, login, logout, post, search, exit
