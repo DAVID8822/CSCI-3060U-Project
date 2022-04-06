@@ -26,13 +26,13 @@ class 257 {
 
 	@Test
 	void testStatementLine259TestRent() {
-		System.out.println("");
+		System.out.println("rental confirmation");
 		Assertions.assertEquals(id, rentedPosting.getCityName(), rentedPosting.getNumBedrooms(), totalcost,  nights);
 	}
 
 	@Test
-	void testStatementLine303TestRent() {
-		System.out.println("");
+	void testStatementLine304TestRent() {
+		System.out.println("search");
 		Assertions.assertEquals(currPost);
 	}
 
@@ -43,13 +43,13 @@ class 257 {
 	}
 	@Test
 	void testStatementLine343Test() {
-		System.out.println("");
+		System.out.println("Testing second Line to array");
 		Assertions.assertEquals(stringSplit[0],Double.parseDouble(stringSplit[1]), Integer.parseInt(stringSplit[2]), Integer.parseInt(stringSplit[3]), Boolean.parseBoolean(stringSplit[4])));
 	}
 
 	@Test
 	void testStatementLine406Test1() {
-		System.out.println("");
+		System.out.println("main test");
 		Assertions.assertEquals(reader,storedOutput, args[1], args[1], accountMap);
 	}
 }
