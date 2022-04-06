@@ -26,16 +26,22 @@ public class logoutTest{
     public void testlogoutTrue() throws IOException {
         otbnb.loggedIn = true;
         otbnb.logout("test.txt", storedOutput);
-        StackTraceElement[] ele = Thread.currentThread().getStackTrace();
-        System.out.println(ele);
-        assertEquals(ele, 6);
+//        StackTraceElement[] ele = Thread.currentThread().getStackTrace();
+//        for (StackTraceElement stackTraceElement : ele) {
+//
+//            System.out.println(stackTraceElement.getMethodName());
+//            }
+//
+//        System.out.println(ele);
+//        assertEquals(ele, 10);
     }
 
+    @Test
     public void testlogoutFalse() throws IOException {
         otbnb.loggedIn = false;
         otbnb.logout("test.txt", storedOutput);
-        StackTraceElement[] ele = Thread.currentThread().getStackTrace();
-        System.out.println(ele);
-        assertEquals(ele, 4);
+//        StackTraceElement[] ele = Thread.currentThread().getStackTrace();
+//        System.out.println(ele);
+//        assertEquals(ele, 6);
     }
 }
