@@ -1,0 +1,8 @@
+#!/bin/bash
+#login
+echo "testUser"
+for inputTestFile in .sh*; do /test/Input/$inputTestFile; done
+echo "logout"
+#exit
+echo "exit"
+#create a mock run of a days use of the program
