@@ -1,4 +1,3 @@
-
 /*Welcome to OT-BNB
 //Description: This program is the front end of an application that keeps track of different rental properties much like the real Air-BNB. 
 It supports the creation and deletion of accounts, logging in and out as well as searching for and renting a property functionalities.
@@ -385,11 +384,6 @@ public class otbnb {
         }
         fw.close();
     }
-
- 
-
-    
- 
 }
     //Main program
     //The start of the program, when users run it they will be prompted with a menu to select an option
@@ -455,8 +449,4 @@ public class otbnb {
         }while(!choice.equals("exit")); //exit exits program
     
     }
-
-  
-
-  
 }
